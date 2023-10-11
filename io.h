@@ -3,5 +3,4 @@
 
 void readFile();
 
-
 #endif //A1_KAO_ALEX_40286533_IO_H

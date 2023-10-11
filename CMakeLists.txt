@@ -9,4 +9,6 @@ add_executable(a1_Kao_Alex_40286533
         sort.c
         tablegen.c
         io.h
+        tablegen.h
+        generate.h
 )

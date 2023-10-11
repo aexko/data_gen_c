@@ -6,38 +6,64 @@ struct Id {
 
 };
 
-struct
+struct FirstName {
+
+};
+
+struct LastName {
+
+};
+
+struct Country {
+
+};
+
+struct PhoneNumber {
+
+};
+
+struct Email {
+
+};
+
+struct Sin {
+
+};
+
+struct Password {
+
+};
 
 
 struct Person {
     struct Id id;
-    char firstName;
-    char lastName;
-    char country;
-    int phoneNumber;
-    char email;
-    int sin;
-    char password;
-
+    struct FirstName firstName;
+    struct LastName lastName;
+    struct Country country;
+    struct PhoneNumber phoneNumber;
+    struct Email email;
+    struct Sin sin;
+    struct Password password;
 };
 
+struct Person people[99];
 
-
-void generateFirstName(){
-
-}
-
-void generateLastName(){
-
-}
-
-void generateCountry(){
-
-}
-
-void generate (){
-
-};
+//
+//void generateFirstName(){
+//
+//}
+//
+//void generateLastName(){
+//
+//}
+//
+//void generateCountry(){
+//
+//}
+//
+//void generate (){
+//
+//};
 
 
 

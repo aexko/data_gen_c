@@ -1,22 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tablegen.h"
 #include "io.h"
 
-#define ERROR '-1'
 #define MENU '0'
 #define NEW_TABLE '1'
 #define EXIT '2'
+#define ERROR '3'
+#define ROW_NUMBER '4'
 
-void cleanUserInput(char userInputColumnList[10]);
-
-void displayMessage(int type);
 
 int main() {
-
-
-    char userInputMenuChoice;
-    char userInputColumnList[10];
 
     readFile();
 
@@ -30,7 +25,9 @@ int main() {
             displayMessage(NEW_TABLE);
             scanf("%s", userInputColumnList);
             system("clear");
-            cleanUserInput(userInputColumnList);
+
+            displayMessage(ROW_NUMBER);
+            cleanUserInput();
             break;
         case EXIT:
             displayMessage(EXIT);
@@ -43,7 +40,7 @@ int main() {
 }
 // source: https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 
-void cleanUserInput(char userInputColumnList[10]) {
+void cleanUserInput() {
     char delim[] = ",";
     char *pointer = strtok(userInputColumnList, delim);
     int sizeCleanedArray = 0;
@@ -80,6 +77,7 @@ void displayMessage(int type) {
 
     char EXIT_MSG[] = "Goodbye and thanks for using TableGen\n";
     char ERROR_MSG[] = "Ouch.. did you verify your input? Maybe it's a compilation problem.!\n";
+    char ROW_NUMBER_MSG[] = "Enter row number";
 
     switch (type) {
         case MENU:
@@ -90,6 +88,9 @@ void displayMessage(int type) {
             break;
         case EXIT:
             printf("%s", EXIT_MSG);
+            break;
+        case ROW_NUMBER:
+            printf("%s", ROW_NUMBER_MSG);
             break;
         case ERROR:
             printf("%s", ERROR_MSG);
