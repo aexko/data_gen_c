@@ -6,6 +6,8 @@ struct Id {
 
 };
 
+struct
+
 
 struct Person {
     struct Id id;
@@ -33,7 +35,9 @@ void generateCountry(){
 
 }
 
-void generate
+void generate (){
+
+};
 
 
 
