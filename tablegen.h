@@ -1,14 +1,14 @@
 #ifndef A1_KAO_ALEX_40286533_TABLEGEN_H
 #define A1_KAO_ALEX_40286533_TABLEGEN_H
 
-char userInputColumnList[20];
-char userInputMenuChoice;
-int rowCount;
-char outputFileName[20];
+char user_input_column_list[20];
+char user_input_menu_choice;
+int row_count;
+char output_file_name[20];
 
 void cleanUserInput();
-void displayMessage(int type);
-void promptUserForInput(int type);
-void displaySummaryProperties();
+void display_message(int type);
+void prompt_user_for_input(int type);
+void display_summary_properties();
 
 #endif

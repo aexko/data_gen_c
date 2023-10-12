@@ -10,6 +10,7 @@
 #define ERROR_INPUT '3'
 #define ROW_NUMBER '4'
 #define OUTPUT_NAME '5'
+#define CONFIRMATION '6'
 
 int main() {
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
@@ -17,31 +18,33 @@ int main() {
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/countries.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/email_suffixes.txt"
 
-  readFile("first_names.txt");
-  readFile("last_names.txt");
-  readFile("countries.txt");
-  readFile("email_suffixes.txt");
+  read_file("first_names.txt");
+  read_file("last_names.txt");
+  read_file("countries.txt");
+  read_file("email_suffixes.txt");
 
   // prompting user start, reading input and clearing console
-  promptUserForInput(MENU);
+  prompt_user_for_input(MENU);
 
-  switch (userInputMenuChoice) {
+  switch (user_input_menu_choice) {
   case NEW_TABLE:
 
-    promptUserForInput(NEW_TABLE);
+    prompt_user_for_input(NEW_TABLE);
 
-    promptUserForInput(ROW_NUMBER);
+    prompt_user_for_input(ROW_NUMBER);
 
-    promptUserForInput(OUTPUT_NAME);
+    prompt_user_for_input(OUTPUT_NAME);
 
-    displaySummaryProperties();
+    display_summary_properties();
+
+    prompt_user_for_input(CONFIRMATION);
 
     break;
   case EXIT:
-    displayMessage(EXIT);
+    display_message(EXIT);
     break;
   default:
-    displayMessage(ERROR_INPUT);
+    display_message(ERROR_INPUT);
     break;
   }
 
@@ -52,67 +55,74 @@ int main() {
 // useless for now
 void cleanUserInput() {
   char delim[] = ",";
-  char *pointer = strtok(userInputColumnList, delim);
-  int sizeCleanedArray = 0;
+  char *pointer = strtok(user_input_column_list, delim);
+  int size_cleaned_array = 0;
 
   while (pointer != NULL) {
     pointer = strtok(NULL, delim);
-    sizeCleanedArray++;
+    size_cleaned_array++;
   }
-  printf("There are %d numbers\n", sizeCleanedArray);
+  printf("There are %d numbers\n", size_cleaned_array);
 
-  char cleanArray[sizeCleanedArray];
+  char clean_array[size_cleaned_array];
 
-  printf("cleanArray: %s \n", cleanArray);
+  printf("clean_array: %s \n", clean_array);
 }
 
-void displaySummaryProperties() {
-  printf("Columns: %s\n", userInputColumnList);
-  printf("Row count: %d\n", rowCount);
-  printf("File name: %s\n", outputFileName);
+void display_summary_properties() {
+  printf("Columns: %s\n", user_input_column_list);
+  printf("Row count: %d\n", row_count);
+  printf("File name: %s\n", output_file_name);
 }
 
-void promptUserForInput(int type) {
+void prompt_user_for_input(int type) {
+  char proceed;
+
   switch (type) {
 
   case MENU:
-    displayMessage(MENU);
-    scanf("%c", &userInputMenuChoice);
-    system("clear");
+    display_message(MENU);
+    scanf("%c", &user_input_menu_choice);
     break;
 
   case NEW_TABLE:
-    displayMessage(NEW_TABLE);
-    scanf("%s", userInputColumnList);
+    display_message(NEW_TABLE);
+    scanf("%s", user_input_column_list);
     break;
 
   case ROW_NUMBER:
-    displayMessage(ROW_NUMBER);
-    scanf("%d", &rowCount);
-    system("clear");
+    display_message(ROW_NUMBER);
+    scanf("%d", &row_count);
 
-    if (rowCount < 0 || rowCount >= 1000000) {
-      displayMessage(ERROR_INPUT);
+    if (row_count < 0 || row_count >= 1000000) {
+      display_message(ERROR_INPUT);
       printf("Error: Row count is negative or exceeds 1M.");
       exit(1);
     }
     break;
 
   case OUTPUT_NAME:
-    displayMessage(OUTPUT_NAME);
-    scanf("%s", outputFileName);
-    system("clear");
+    display_message(OUTPUT_NAME);
+    scanf("%s", output_file_name);
+    break;
+
+  case CONFIRMATION:
+    display_message(CONFIRMATION);
+    do {
+      scanf("%c", &proceed);
+    } while ((proceed != 'c') && (proceed != 'C'));
+
     break;
 
   default:
-    // it should never come here, but I still left the default case.
+    // default case not required, it should never come here
     printf("Error...");
     break;
   }
   system("clear");
 }
 
-void displayMessage(int type) {
+void display_message(int type) {
   char MENU_MSG[] = "TableGen Menu\n"
                     "----------\n"
                     "1. Generate new table\n"
@@ -133,6 +143,7 @@ void displayMessage(int type) {
   char ERROR_INPUT_MSG[] = "Ouch.. did you verify your input?\n";
   char ROW_NUMBER_MSG[] = "Enter row count (1 < n < 1M): ";
   char OUTPUT_NAME_MSG[] = "Enter output file name (so suffix): ";
+  char CONFIRMATION_MSG[] = "Press 'c' or 'C' to continue\n";
 
   switch (type) {
   case MENU:
@@ -152,6 +163,9 @@ void displayMessage(int type) {
     break;
   case OUTPUT_NAME:
     printf("%s", OUTPUT_NAME_MSG);
+    break;
+  case CONFIRMATION:
+    printf("%s", CONFIRMATION_MSG);
     break;
 
   default:

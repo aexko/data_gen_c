@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void readFile(char *fileName) {
+void read_file(char *fileName) {
 
-  FILE *fileHandler = fopen(fileName, "r");
-  //    FILE *fileHandler = fopen("first_names.txt", "r");
-  if (fileHandler == NULL) {
+  FILE *file_handler = fopen(fileName, "r");
+  //    FILE *file_handler = fopen("first_names.txt", "r");
+  if (file_handler == NULL) {
     printf("One of the files could not be opened. Please make sure that "
            "the required .txt files are present in the local repository. "
            "Thank you.!\n");
@@ -14,7 +14,7 @@ void readFile(char *fileName) {
   } else {
 
     //        char c;
-    //        while ((c = fgetc(fileHandler)) != EOF) {
+    //        while ((c = fgetc(file_handler)) != EOF) {
     //            if (c == '%0') {
     //                printf("\n");
     //            } else {
@@ -24,8 +24,8 @@ void readFile(char *fileName) {
     //        }
     char buffer[255];
 
-    fgets(buffer, 255, fileHandler);
+    fgets(buffer, 255, file_handler);
     printf("%s", buffer);
   }
-  fclose(fileHandler);
+  fclose(file_handler);
 }
