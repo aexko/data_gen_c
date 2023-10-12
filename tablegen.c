@@ -1,3 +1,7 @@
+// Code convention used:
+// https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
+
+
 #include "tablegen.h"
 #include "io.h"
 #include <stdio.h>
@@ -19,9 +23,9 @@ int main() {
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/email_suffixes.txt"
 
   read_file("first_names.txt");
-  read_file("last_names.txt");
-  read_file("countries.txt");
-  read_file("email_suffixes.txt");
+//  read_file("last_names.txt");
+//  read_file("countries.txt");
+//  read_file("email_suffixes.txt");
 
   // prompting user start, reading input and clearing console
   prompt_user_for_input(MENU);
