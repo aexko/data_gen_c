@@ -65,7 +65,7 @@ void cleanUserInput() {
   printf("There are %d numbers\n", size_cleaned_array);
 
   char clean_array[size_cleaned_array];
-
+  // counts size
   printf("clean_array: %s \n", clean_array);
 }
 
