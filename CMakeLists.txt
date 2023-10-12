@@ -8,7 +8,6 @@ add_executable(a1_Kao_Alex_40286533
         io.c
         sort.c
         tablegen.c
-        io.h
         tablegen.h
-        generate.h
+        io.h
 )

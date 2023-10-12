@@ -3,6 +3,8 @@
 
 char userInputColumnList[10];
 char userInputMenuChoice;
+int rowCount;
+char outputFileName[20];
 
 void cleanUserInput();
 void displayMessage(int type);

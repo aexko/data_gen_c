@@ -7,13 +7,18 @@
 #define MENU '0'
 #define NEW_TABLE '1'
 #define EXIT '2'
-#define ERROR '3'
+#define ERROR_INPUT '3'
 #define ROW_NUMBER '4'
+#define OUTPUT_NAME '5'
+
 
 
 int main() {
 
-    readFile();
+    readFile("first_names.txt");
+    readFile("last_names.txt");
+    readFile("countries.txt");
+    readFile("email_suffixes.txt");
 
     // prompting user start, reading input and clearing console
     displayMessage(MENU);
@@ -27,15 +32,42 @@ int main() {
             system("clear");
 
             displayMessage(ROW_NUMBER);
+            scanf("%d", &rowCount);
+
+
+
+            system("clear");
+
+
+            if (rowCount < 0 || rowCount >= 1000000) {
+                displayMessage(ERROR_INPUT);
+                printf("Error: Row count is negative or exceeds 1M.");
+                exit(1);
+            }
+
+
+            printf("%d\n", rowCount);
+
+            displayMessage(OUTPUT_NAME);
+            scanf("%s", outputFileName);
+            system("clear");
+
+            printf("%s\n", outputFileName);
+
             cleanUserInput();
             break;
         case EXIT:
             displayMessage(EXIT);
             break;
         default:
-            displayMessage(ERROR);
+            displayMessage(ERROR_INPUT);
             break;
     }
+
+
+
+
+
     return 0;
 }
 // source: https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
@@ -76,8 +108,9 @@ void displayMessage(int type) {
                            "Enter column list (comma-separated, no spaces): ";
 
     char EXIT_MSG[] = "Goodbye and thanks for using TableGen\n";
-    char ERROR_MSG[] = "Ouch.. did you verify your input? Maybe it's a compilation problem.!\n";
-    char ROW_NUMBER_MSG[] = "Enter row number";
+    char ERROR_INPUT_MSG[] = "Ouch.. did you verify your input?\n";
+    char ROW_NUMBER_MSG[] = "Enter row count (1 < n < 1M): ";
+    char OUTPUT_NAME_MSG[] = "Enter output file name (so suffix): ";
 
     switch (type) {
         case MENU:
@@ -89,11 +122,16 @@ void displayMessage(int type) {
         case EXIT:
             printf("%s", EXIT_MSG);
             break;
+        case ERROR_INPUT:
+            printf("%s", ERROR_INPUT_MSG);
+            break;
         case ROW_NUMBER:
             printf("%s", ROW_NUMBER_MSG);
             break;
-        case ERROR:
-            printf("%s", ERROR_MSG);
+        case OUTPUT_NAME:
+            printf("%s", OUTPUT_NAME_MSG);
+            break;
+
         default:
             // it should never come here, but I still left the default case.
             printf("Error...");
