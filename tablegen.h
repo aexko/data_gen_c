@@ -11,5 +11,4 @@ void displayMessage(int type);
 void promptUserForInput(int type);
 void displaySummaryProperties();
 
-
-#endif //A1_KAO_ALEX_40286533_TABLEGEN_H
+#endif

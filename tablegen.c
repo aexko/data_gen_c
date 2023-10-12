@@ -23,7 +23,7 @@ int main() {
   readFile("email_suffixes.txt");
 
   // prompting user start, reading input and clearing console
-  promptUserForInput(MENU );
+  promptUserForInput(MENU);
 
   switch (userInputMenuChoice) {
   case NEW_TABLE:
