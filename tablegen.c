@@ -1,20 +1,19 @@
 // Code convention used:
 // https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
 
-
-#include "tablegen.h"
-#include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tablegen.h"
+#include "io.h"
 
-#define MENU '0'
-#define NEW_TABLE '1'
-#define EXIT '2'
-#define ERROR_INPUT '3'
-#define ROW_NUMBER '4'
-#define OUTPUT_NAME '5'
-#define CONFIRMATION '6'
+
+
+
+char user_input_column_list[20];
+char user_input_menu_choice;
+int row_count;
+char output_file_name[20];
 
 int main() {
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
