@@ -1,10 +1,13 @@
 #ifndef A1_KAO_ALEX_40286533_TABLEGEN_H
 #define A1_KAO_ALEX_40286533_TABLEGEN_H
 
-char user_input_column_list[20];
-char user_input_menu_choice;
-int row_count;
-char output_file_name[20];
+#define MENU '0'
+#define NEW_TABLE '1'
+#define EXIT '2'
+#define ERROR_INPUT '3'
+#define ROW_NUMBER '4'
+#define OUTPUT_NAME '5'
+#define CONFIRMATION '6'
 
 void cleanUserInput();
 void display_message(int type);
