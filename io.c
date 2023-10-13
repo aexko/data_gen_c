@@ -10,7 +10,12 @@
 
 const char *list_first_names[1000];
 
-
+/**
+ * Read And Store All Lines Of A File Into An Array Of Strings
+ * Description: Example of reading and storing all the lines of a file into an
+ * array of strings in C.
+ * Author: Kevin Browne @ https://portfoliocourses.com
+ **/
 void read_file(char *fileName) {
     FILE *file_handler = fopen(fileName, "r");
     if (file_handler == NULL) {
