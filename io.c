@@ -19,45 +19,6 @@ void read_file(char *fileName) {
         exit(1);
     } else {
 
-
-        char buffer[64];
-
-        char **lines;
-        lines = malloc(sizeof(char *) * MORE_LINES);
-        size_t total_lines = 0;
-        size_t total_chars = 0;
-        char c;
-
-        do {
-
-            c = fgetc(file_handler);
-            if (ferror(file_handler)) {
-                printf("Error reading from file\n");
-                exit(1);
-            }
-
-            if (feof(file_handler)) {
-                break;
-            }
-
-            if (total_chars == 0) {
-                lines[total_lines] = malloc(MORE_CHARS);
-
-            }
-
-            lines[total_lines][total_chars] = c;
-            total_chars++;
-
-            if (c == '\n') {
-                lines[total_lines] = realloc(lines[total_lines], total_chars + 1);
-                lines[total_lines][total_chars] = '\0';
-                total_lines++;
-                total_chars = 0;
-                // 11:17
-            }
-
-        } while (true);
-
     }
     fclose(file_handler);
 }
