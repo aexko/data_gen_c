@@ -4,6 +4,7 @@
 CMakeFiles/a1_Kao_Alex_40286533.dir/generate.c.o: /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/generate.c
 
 CMakeFiles/a1_Kao_Alex_40286533.dir/io.c.o: /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/io.c \
+  /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/io.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h \
@@ -81,7 +82,7 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/io.c.o: /Users/alex/Documents/comp348/a1_Kao
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/malloc/_malloc_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/io.h
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h
 
 CMakeFiles/a1_Kao_Alex_40286533.dir/sort.c.o: /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/sort.c
 
@@ -181,6 +182,8 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/tablegen.c.o: /Users/alex/Documents/comp348/
 
 /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/sort.c:
 
+/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/malloc/_malloc_type.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/strings.h:
@@ -229,6 +232,8 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/tablegen.c.o: /Users/alex/Documents/comp348/
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_attr_t.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/machine/_mcontext.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_id_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_pthread/_pthread_types.h:
@@ -266,8 +271,6 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/tablegen.c.o: /Users/alex/Documents/comp348/
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_int8_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_int32_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/machine/_mcontext.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/Availability.h:
 
@@ -313,27 +316,25 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/tablegen.c.o: /Users/alex/Documents/comp348/
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_dev_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/alloca.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_types.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/arm/signal.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/signal.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_off_t.h:
-
-/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/io.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/mach/machine/_structs.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/AvailabilityVersions.h:
+
+/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/io.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_off_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_types/_dev_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/alloca.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/cdefs.h:
 
 /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/tablegen.h:
 
@@ -348,5 +349,7 @@ CMakeFiles/a1_Kao_Alex_40286533.dir/tablegen.c.o: /Users/alex/Documents/comp348/
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdio.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/stdlib.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/sys/_symbol_aliasing.h:

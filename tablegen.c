@@ -26,6 +26,7 @@ int main() {
 //  read_file("countries.txt");
 //  read_file("email_suffixes.txt");
 
+
   // prompting user start, reading input and clearing console
   prompt_user_for_input(MENU);
 
