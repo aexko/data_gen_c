@@ -11,57 +11,53 @@
 char list_first_names[1000][15];
 
 void read_file(char *fileName) {
-  FILE *file_handler = fopen(fileName, "r");
-  if (file_handler == NULL) {
-    printf("One of the files could not be opened. Please make sure that "
-           "the required .txt files are present in the local repository. "
-           "Thank you.!\n");
-    exit(1);
-  } else {
-
-
-    char buffer[64];
-
-    char **lines;
-    lines = malloc(sizeof(char *) * MORE_LINES);
-    size_t total_lines = 0;
-    size_t total_chars = 0;
-    char c;
-
-    do {
-
-      c = fgetc(file_handler);
-      if (ferror(file_handler))
-      {
-        printf("Error reading from file\n");
+    FILE *file_handler = fopen(fileName, "r");
+    if (file_handler == NULL) {
+        printf("One of the files could not be opened. Please make sure that "
+               "the required .txt files are present in the local repository. "
+               "Thank you.!\n");
         exit(1);
-      }
+    } else {
 
-      if (feof(file_handler))
-      {
-        break;
-      }
 
-      if (total_chars == 0)
-      {
-        lines[total_lines] = malloc(MORE_CHARS);
+        char buffer[64];
 
-      }
+        char **lines;
+        lines = malloc(sizeof(char *) * MORE_LINES);
+        size_t total_lines = 0;
+        size_t total_chars = 0;
+        char c;
 
-      lines[total_lines][total_chars] = c;
-      total_chars++;
+        do {
 
-      if (c == '\n')
-      {
-        lines[total_lines] = realloc(lines[total_lines],total_chars + 1);
-        lines[total_lines][total_chars] = '\0';
-        total_lines++;
-        total_chars = 0;
-//        11:17
-      }
+            c = fgetc(file_handler);
+            if (ferror(file_handler)) {
+                printf("Error reading from file\n");
+                exit(1);
+            }
 
-    } while (true);
+            if (feof(file_handler)) {
+                break;
+            }
 
-  }
-  fclose(file_handler);
+            if (total_chars == 0) {
+                lines[total_lines] = malloc(MORE_CHARS);
+
+            }
+
+            lines[total_lines][total_chars] = c;
+            total_chars++;
+
+            if (c == '\n') {
+                lines[total_lines] = realloc(lines[total_lines], total_chars + 1);
+                lines[total_lines][total_chars] = '\0';
+                total_lines++;
+                total_chars = 0;
+                // 11:17
+            }
+
+        } while (true);
+
+    }
+    fclose(file_handler);
 }
