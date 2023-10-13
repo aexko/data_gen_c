@@ -15,7 +15,8 @@ char output_file_name[20];
 
 int main() {
   // test purposes
-  generate_password();
+//  generate_data();
+
 
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/last_names.txt"
@@ -53,7 +54,6 @@ int main() {
   return 0;
 }
 
-// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 // useless for now
 void cleanUserInput() {
   char delim[] = ",";
