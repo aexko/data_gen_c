@@ -1,14 +1,12 @@
 // Code convention used:
 // https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
 
+#include "tablegen.h"
+#include "io.h"
+#include "generate.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "tablegen.h"
-#include "io.h"
-
-
-
 
 char user_input_column_list[20];
 char user_input_menu_choice;
@@ -16,16 +14,18 @@ int row_count;
 char output_file_name[20];
 
 int main() {
+  // test purposes
+  generate_password();
+
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/last_names.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/countries.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/email_suffixes.txt"
 
-  read_file("first_names.txt");
-//  read_file("last_names.txt");
-//  read_file("countries.txt");
-//  read_file("email_suffixes.txt");
-
+//  read_file("first_names.txt");
+  //  read_file("last_names.txt");
+  //  read_file("countries.txt");
+  //  read_file("email_suffixes.txt");
 
   // prompting user start, reading input and clearing console
   prompt_user_for_input(MENU);
@@ -34,14 +34,12 @@ int main() {
   case NEW_TABLE:
 
     prompt_user_for_input(NEW_TABLE);
-
     prompt_user_for_input(ROW_NUMBER);
-
     prompt_user_for_input(OUTPUT_NAME);
-
     display_summary_properties();
-
     prompt_user_for_input(CONFIRMATION);
+
+//    generate_data();
 
     break;
   case EXIT:
