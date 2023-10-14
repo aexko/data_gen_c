@@ -15,8 +15,7 @@ char output_file_name[20];
 
 int main() {
   // test purposes
-//  generate_data();
-
+  //  generate_data();
 
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/last_names.txt"

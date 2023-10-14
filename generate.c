@@ -1,9 +1,9 @@
 #include "generate.h"
+#include "tablegen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "tablegen.h"
 
 #define USER_ID 1
 #define FIRST_NAME 2
@@ -18,7 +18,6 @@
 
 #define PASSWORD_MAX_VALUE 16
 #define PASSWORD_MIN_VALUE 6
-
 
 int initial_id = 0;
 
@@ -72,7 +71,7 @@ int generate_random_number(int min, int max) {
 }
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
-void generate_data(){
+void generate_data() {
   char delim[] = ",";
   // TO FIX SO NO ERROR
   char *user_input_column_list;
@@ -85,10 +84,10 @@ void generate_data(){
   }
 
   for (int i = 0; i < true_length_user_input; i++) {
-    switch(user_input_column_list[i]) {
+    switch (user_input_column_list[i]) {
     case USER_ID:
       // add that to struct
-//      generate_id();
+      //      generate_id();
       break;
     case FIRST_NAME:
       break;
@@ -109,10 +108,9 @@ void generate_data(){
       break;
     }
   }
-
 }
 void generate_sin() {
-  for (int i = 0; i < SIN_LENGTH;i++) {
-    generate_random_number(0,9);
+  for (int i = 0; i < SIN_LENGTH; i++) {
+    generate_random_number(0, 9);
   }
 }
