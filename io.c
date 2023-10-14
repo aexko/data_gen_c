@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define FILE_FIRST_NAMES 1
 #define FILE_LAST_NAMES 2
@@ -20,6 +21,10 @@ int rows_last_names;
 int rows_countries;
 int rows_email_suffixes;
 
+
+void check_files() {
+
+}
 /**
  * Read And Store All Lines Of A File Into An Array Of Strings
  * Description: Example of reading and storing all the lines of a file into an

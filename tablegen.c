@@ -39,7 +39,13 @@ int main() {
 
     prompt_user_for_input(NEW_TABLE);
     prompt_user_for_input(ROW_NUMBER);
+    if (row_count < 0 || row_count >= 1000000) {
+      display_message(ERROR_INPUT);
+      printf("Error: Row count is negative or exceeds 1M.\n");
+      return 0;
+    }
     prompt_user_for_input(OUTPUT_NAME);
+
     display_summary_properties();
     prompt_user_for_input(CONFIRMATION);
 
@@ -98,12 +104,6 @@ void prompt_user_for_input(int type) {
   case ROW_NUMBER:
     display_message(ROW_NUMBER);
     scanf("%d", &row_count);
-
-    if (row_count < 0 || row_count >= 1000000) {
-      display_message(ERROR_INPUT);
-      printf("Error: Row count is negative or exceeds 1M.");
-      exit(1);
-    }
     break;
 
   case OUTPUT_NAME:
