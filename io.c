@@ -23,20 +23,17 @@ void read_file(char *fileName) {
            "Thank you!\n");
     exit(1);
   } else {
-    char data[MAX_LINES][MAX_LENGTH];
 
-    int line = 0;
 
-    while (!feof(file_handler) && !ferror(file_handler)) {
 
-      if (fgets(data[line], MAX_LENGTH, file_handler) != NULL) {
-        line++;
-      }
-    }
-
-    for (int i = 0; i < line; i++) {
-      printf("%s", data[i]);
-    }
   }
   fclose(file_handler);
+}
+
+
+void countRowsFile(char *fileName) {
+  FILE *file_handler = fopen(fileName, "r");
+
+  fclose(file_handler);
+
 }
