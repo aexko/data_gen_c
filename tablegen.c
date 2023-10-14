@@ -21,6 +21,11 @@ int main() {
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/countries.txt"
   //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/email_suffixes.txt"
 
+  countRowsFile("first_names.txt");
+  countRowsFile("last_names.txt");
+  countRowsFile("countries.txt");
+  countRowsFile("email_suffixes.txt");
+
   //  read_file("first_names.txt");
   //  read_file("last_names.txt");
   //  read_file("countries.txt");
