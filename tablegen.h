@@ -10,6 +10,7 @@
 #define CONFIRMATION '6'
 
 void cleanUserInput();
+void initializeProgram();
 void display_message(int type);
 void prompt_user_for_input(int type);
 void display_summary_properties();

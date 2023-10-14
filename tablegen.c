@@ -16,20 +16,7 @@ char output_file_name[20];
 int main() {
   // test purposes
 
-  //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/first_names.txt"
-  //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/last_names.txt"
-  //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/countries.txt"
-  //  "/Users/alex/Documents/comp348/a1_Kao_Alex_40286533/email_suffixes.txt"
-
-  countRowsFile("first_names.txt");
-  countRowsFile("last_names.txt");
-  countRowsFile("countries.txt");
-  countRowsFile("email_suffixes.txt");
-
-  //  read_file("first_names.txt");
-  //  read_file("last_names.txt");
-  //  read_file("countries.txt");
-  //  read_file("email_suffixes.txt");
+  initializeProgram();
 
   // prompting user start, reading input and clearing console
   prompt_user_for_input(MENU);
@@ -125,6 +112,13 @@ void prompt_user_for_input(int type) {
     break;
   }
   system("clear");
+}
+
+void initializeProgram() {
+  check_file("first_names.txt");
+  check_file("last_names.txt");
+  check_file("countries.txt");
+  check_file("email_suffixes.txt");
 }
 
 void display_message(int type) {

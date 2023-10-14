@@ -22,29 +22,43 @@ int rows_countries;
 int rows_email_suffixes;
 
 
-void check_files() {
-
+void create_storage() {
+  char *first_names[rows_first_names];
+  char *last_names[rows_last_names];
+  char *countries[rows_countries];
+  char *email_suffixes[rows_email_suffixes];
 }
+
+int check_file(char *file_name) {
+  FILE *file_handler = fopen(file_name, "r");
+  if (file_handler == NULL) {
+    printf("%s could not be opened. Please make sure that "
+           "the required .txt files are present in the local repository. "
+           "Thank you!\n", file_name);
+    exit(1);
+  } else {
+
+    count_rows_file(file_name);
+    create_storage();
+    fclose(file_handler);
+    return 0;
+  }
+}
+
 /**
  * Read And Store All Lines Of A File Into An Array Of Strings
  * Description: Example of reading and storing all the lines of a file into an
  * array of strings in C.
  * Author: Kevin Browne @ https://portfoliocourses.com
  **/
-void read_file(char *fileName) {
-  FILE *file_handler = fopen(fileName, "r");
-  if (file_handler == NULL) {
-    printf("One of the files could not be opened. Please make sure that "
-           "the required .txt files are present in the local repository. "
-           "Thank you!\n");
-    exit(1);
-  } else {
-  }
+void read_file(char *file_name) {
+  FILE *file_handler = fopen(file_name, "r");
+//  fill_storage();
   fclose(file_handler);
 }
 
-void countRowsFile(char *fileName) {
-  FILE *file_handler = fopen(fileName, "r");
+void count_rows_file(char *file_name) {
+  FILE *file_handler = fopen(file_name, "r");
   int nb_rows = 0;
   int c;
   while (!feof(file_handler) && !ferror(file_handler)) {
@@ -54,19 +68,19 @@ void countRowsFile(char *fileName) {
     }
   }
 
-  if (strcmp(fileName, "first_names.txt") == 0) {
+  if (strcmp(file_name, "first_names.txt") == 0) {
     rows_first_names = nb_rows;
     printf("first_names.txt: %d\n", rows_first_names);
   }
-  if (strcmp(fileName, "last_names.txt") == 0) {
+  if (strcmp(file_name, "last_names.txt") == 0) {
     rows_last_names = nb_rows;
     printf("last_names.txt: %d\n", rows_last_names);
   }
-  if (strcmp(fileName, "countries.txt") == 0) {
+  if (strcmp(file_name, "countries.txt") == 0) {
     rows_countries = nb_rows;
     printf("countries.txt %d\n", rows_countries);
   }
-  if (strcmp(fileName, "email_suffixes.txt") == 0) {
+  if (strcmp(file_name, "email_suffixes.txt") == 0) {
     rows_email_suffixes = nb_rows;
     printf("email_suffixes.txt %d\n", rows_email_suffixes);
   }
