@@ -5,7 +5,7 @@ void create_storage();
 void fill_storage();
 int check_file(char *file_name);
 
-void read_files(char *file_name);
+void read_file(char *file_name);
 void count_rows_file(char *file_name);
 
 #endif

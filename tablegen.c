@@ -119,6 +119,14 @@ void initializeProgram() {
   check_file("last_names.txt");
   check_file("countries.txt");
   check_file("email_suffixes.txt");
+
+  read_file("first_names.txt");
+  read_file("last_names.txt");
+  read_file("countries.txt");
+  read_file("email_suffixes.txt");
+
+
+
 }
 
 void display_message(int type) {

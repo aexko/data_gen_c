@@ -44,12 +44,6 @@ int check_file(char *file_name) {
   }
 }
 
-/**
- * Read And Store All Lines Of A File Into An Array Of Strings
- * Description: Example of reading and storing all the lines of a file into an
- * array of strings in C.
- * Author: Kevin Browne @ https://portfoliocourses.com
- **/
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   //  fill_storage();
