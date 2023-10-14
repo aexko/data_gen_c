@@ -19,7 +19,7 @@
 #define PASSWORD_MAX_VALUE 16
 #define PASSWORD_MIN_VALUE 6
 
-int initial_id = 0;
+int initial_id = 1;
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
