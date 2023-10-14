@@ -21,7 +21,6 @@ int rows_last_names;
 int rows_countries;
 int rows_email_suffixes;
 
-
 void create_storage() {
   char *first_names[rows_first_names];
   char *last_names[rows_last_names];
@@ -34,10 +33,10 @@ int check_file(char *file_name) {
   if (file_handler == NULL) {
     printf("%s could not be opened. Please make sure that "
            "the required .txt files are present in the local repository. "
-           "Thank you!\n", file_name);
+           "Thank you!\n",
+           file_name);
     exit(1);
   } else {
-
     count_rows_file(file_name);
     create_storage();
     fclose(file_handler);
@@ -53,7 +52,7 @@ int check_file(char *file_name) {
  **/
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
-//  fill_storage();
+  //  fill_storage();
   fclose(file_handler);
 }
 
