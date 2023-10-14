@@ -28,6 +28,7 @@ void read_file(char *fileName) {
     int line = 0;
 
     while (!feof(file_handler) && !ferror(file_handler)) {
+
       if (fgets(data[line], MAX_LENGTH, file_handler) != NULL) {
         line++;
       }

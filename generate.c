@@ -21,19 +21,61 @@
 
 int initial_id = 0;
 
-void generate_sin();
+// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
+void generate_data() {
+  char delim[] = ",";
+  // TO FIX SO NO ERROR
+  char *user_input_column_list;
+  char *pointer = strtok(user_input_column_list, delim);
+  int true_length_user_input = 0;
+
+  while (pointer != NULL) {
+    pointer = strtok(NULL, delim);
+    true_length_user_input++;
+  }
+
+  for (int i = 0; i < true_length_user_input; i++) {
+    switch (user_input_column_list[i]) {
+    case USER_ID:
+      generate_id();
+      break;
+    case FIRST_NAME:
+      generate_first_name();
+      break;
+    case LAST_NAME:
+      generate_last_name();
+      break;
+    case COUNTRY:
+      generate_country();
+      break;
+    case PHONE_NUMBER:
+      generate_phone_number();
+      break;
+    case EMAIL_ADDRESS:
+      generate_email_address();
+      break;
+    case SIN:
+      generate_sin();
+      break;
+    case PASSWORD:
+      generate_password();
+      break;
+    }
+  }
+}
+
 // id
 int generate_id() { return initial_id++; }
 
-// first_name
-char generate_first_name() {}
+void generate_first_name() {}
 
-// last_name
-// country
-// phone_number
-// email_address
-// sin
-// password
+void generate_last_name() {}
+
+void generate_country() {}
+
+void generate_phone_number() {}
+
+void generate_email_address() {}
 
 void generate_password() {
   srand(time(NULL));
@@ -48,6 +90,12 @@ void generate_password() {
     password_generated[i] = generate_random_char();
   }
   printf("password is %s\n", password_generated);
+}
+
+void generate_sin() {
+  for (int i = 0; i < SIN_LENGTH; i++) {
+    generate_random_number(0, 9);
+  }
 }
 
 // to find total char in pointer
@@ -68,49 +116,4 @@ int generate_random_number(int min, int max) {
   int random_number;
   random_number = rand() % ((max + 1) - min) - min;
   return random_number;
-}
-
-// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
-void generate_data() {
-  char delim[] = ",";
-  // TO FIX SO NO ERROR
-  char *user_input_column_list;
-  char *pointer = strtok(user_input_column_list, delim);
-  int true_length_user_input = 0;
-
-  while (pointer != NULL) {
-    pointer = strtok(NULL, delim);
-    true_length_user_input++;
-  }
-
-  for (int i = 0; i < true_length_user_input; i++) {
-    switch (user_input_column_list[i]) {
-    case USER_ID:
-      // add that to struct
-      //      generate_id();
-      break;
-    case FIRST_NAME:
-      break;
-    case LAST_NAME:
-      break;
-    case COUNTRY:
-      break;
-    case PHONE_NUMBER:
-      break;
-    case EMAIL_ADDRESS:
-      break;
-    case SIN:
-      generate_sin();
-      break;
-    case PASSWORD:
-      // create a struct with that
-      generate_password();
-      break;
-    }
-  }
-}
-void generate_sin() {
-  for (int i = 0; i < SIN_LENGTH; i++) {
-    generate_random_number(0, 9);
-  }
 }
