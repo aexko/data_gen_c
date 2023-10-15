@@ -14,7 +14,10 @@
 #define PASSWORD_MIN_VALUE 6
 #define BUFFER_SIZE 8192
 
-void generate_data(char *user_input_column_list);
+void generate_data();
+
+void clean_array();
+int count_values();
 char generate_random_char();
 int generate_random_number(int min, int max);
 int generate_id();

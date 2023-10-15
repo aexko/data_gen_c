@@ -6,34 +6,38 @@
 #include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 char user_input_menu_choice;
+char user_input_column_list[MAX_LENGTH_INPUT];
 int row_count;
-char output_file_name[20];
+char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
   // test purposes
+  test();
 
   initialize_program();
 
   // prompting user start, reading input and clearing console
-  prompt_user_for_input(MENU);
+  prompt_user_input(MENU);
 
   switch (user_input_menu_choice) {
   case NEW_TABLE:
 
-    prompt_user_for_input(NEW_TABLE);
-    prompt_user_for_input(ROW_NUMBER);
+    prompt_user_input(NEW_TABLE);
+    prompt_user_input(ROW_NUMBER);
     if (row_count < 0 || row_count >= 1000000) {
       display_message(ERROR_INPUT);
       printf("The reason could be the row count is negative or exceeds 1M.\n");
       return 0;
     }
-    prompt_user_for_input(OUTPUT_NAME);
+    prompt_user_input(OUTPUT_NAME);
     display_summary_properties();
-    prompt_user_for_input(CONFIRMATION);
+    prompt_user_input(CONFIRMATION);
 
-    generate_data(user_input_column_list);
+    generate_data();
     break;
   case EXIT:
     display_message(EXIT);
@@ -45,13 +49,20 @@ int main() {
   return 0;
 }
 
+
+void test() {}
+
+
+
+
+
 void display_summary_properties() {
   printf("Columns: %s\n", user_input_column_list);
   printf("Row count: %d\n", row_count);
   printf("File name: %s\n", output_file_name);
 }
 
-void prompt_user_for_input(int type) {
+void prompt_user_input(int type) {
   char proceed;
 
   switch (type) {
@@ -126,7 +137,7 @@ void display_message(int type) {
   char ERROR_INPUT_MSG[] = "Ouch.. did you verify your input?\n";
   char ROW_NUMBER_MSG[] = "Enter row count (1 < n < 1M): ";
   char OUTPUT_NAME_MSG[] = "Enter output file name (so suffix): ";
-  char CONFIRMATION_MSG[] = "Press 'c' or 'C' to continue\n";
+  char CONFIRMATION_MSG[] = "Press 'c' or 'C' to continue: ";
 
   switch (type) {
   case MENU:

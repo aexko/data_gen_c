@@ -11,4 +11,5 @@ add_executable(a1_Kao_Alex_40286533
         tablegen.h
         io.h
         generate.h
+        global.h
 )
