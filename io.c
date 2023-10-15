@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 const char *list_first_names[1000];
 
 int rows_first_names;
