@@ -4,9 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// https://www.quora.com/How-can-I-read-a-file-into-a-buffer-in-C
-/* 8k buffer */
-#define BUFFER_SIZE 8192
+
 
 const char *list_first_names[1000];
 
