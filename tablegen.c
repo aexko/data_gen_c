@@ -2,11 +2,9 @@
 // https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
 
 #include "tablegen.h"
-#include "generate.h"
 #include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 char user_input_column_list[20];
 char user_input_menu_choice;
@@ -47,23 +45,6 @@ int main() {
     break;
   }
   return 0;
-}
-
-// useless for now
-void cleanUserInput() {
-  char delim[] = ",";
-  char *pointer = strtok(user_input_column_list, delim);
-  int size_cleaned_array = 0;
-
-  while (pointer != NULL) {
-    pointer = strtok(NULL, delim);
-    size_cleaned_array++;
-  }
-  printf("There are %d numbers\n", size_cleaned_array);
-
-  char clean_array[size_cleaned_array];
-  // counts size
-  printf("clean_array: %s \n", clean_array);
 }
 
 void display_summary_properties() {
@@ -125,8 +106,6 @@ void initializeProgram() {
   read_file("email_suffixes.txt");
 
   free_memory();
-
-
 }
 
 void display_message(int type) {

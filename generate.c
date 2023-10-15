@@ -105,7 +105,8 @@ char generate_random_char() {
                                   "lzxcvbnm~!@#$%^&*()_+{}:\"<>?./;'[]";
   int chars_authorized_length =
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
-  unsigned char random_char = generate_random_number(0, chars_authorized_length);
+  unsigned char random_char =
+      generate_random_number(0, chars_authorized_length);
   printf("%c\n", chars_authorized[random_char]);
   return chars_authorized[random_char];
 }
