@@ -5,34 +5,30 @@
 #include <string.h>
 #include <time.h>
 
-#define USER_ID 1
-#define FIRST_NAME 2
-#define LAST_NAME 3
-#define COUNTRY 4
-#define PHONE_NUMBER 5
-#define EMAIL_ADDRESS 6
-#define SIN 7
-#define PASSWORD 8
 
-#define SIN_LENGTH 9
-
-#define PASSWORD_MAX_VALUE 16
-#define PASSWORD_MIN_VALUE 6
 
 int initial_id = 1;
 
-// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
-void generate_data() {
+
+void cleanUserInput() {
   char delim[] = ",";
-  // TO FIX SO NO ERROR
-  char *user_input_column_list;
   char *pointer = strtok(user_input_column_list, delim);
-  int true_length_user_input = 0;
+  int size_cleaned_array = 0;
 
   while (pointer != NULL) {
     pointer = strtok(NULL, delim);
-    true_length_user_input++;
+    size_cleaned_array++;
   }
+  printf("There are %d numbers\n", size_cleaned_array);
+
+  char clean_array[size_cleaned_array];
+  // counts size
+  printf("clean_array: %s \n", clean_array);
+}
+// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
+void generate_data(char *user_input_column_list) {
+
+
 
   for (int i = 0; i < true_length_user_input; i++) {
     switch (user_input_column_list[i]) {
@@ -67,11 +63,21 @@ void generate_data() {
 // id
 int generate_id() { return initial_id++; }
 
-void generate_first_name() {}
+// https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
+char *generate_first_name() {
+//  char *first_name_random;
+  int random_number = generate_random_number(0, 1000);
+  printf("%d\n", random_number);
+  //
+  //  int length = strlen(first_name_random);
+  //  first_name_random = malloc(length * sizeof(char));
+  //  first_name_random[length - 1] = '\0';
+  return NULL;
+}
 
-void generate_last_name() {}
+const char *generate_last_name() { return NULL; }
 
-void generate_country() {}
+const char *generate_country() { return NULL; }
 
 void generate_phone_number() {}
 

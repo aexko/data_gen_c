@@ -9,7 +9,7 @@
 #define OUTPUT_NAME '5'
 #define CONFIRMATION '6'
 
-void initializeProgram();
+void initialize_program();
 void display_message(int type);
 void prompt_user_for_input(int type);
 void display_summary_properties();

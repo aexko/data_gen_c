@@ -2,11 +2,11 @@
 // https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
 
 #include "tablegen.h"
+#include "generate.h"
 #include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-char user_input_column_list[20];
 char user_input_menu_choice;
 int row_count;
 char output_file_name[20];
@@ -14,7 +14,7 @@ char output_file_name[20];
 int main() {
   // test purposes
 
-  initializeProgram();
+  initialize_program();
 
   // prompting user start, reading input and clearing console
   prompt_user_for_input(MENU);
@@ -30,12 +30,10 @@ int main() {
       return 0;
     }
     prompt_user_for_input(OUTPUT_NAME);
-
     display_summary_properties();
     prompt_user_for_input(CONFIRMATION);
 
-    //    generate_data();
-
+    generate_data(user_input_column_list);
     break;
   case EXIT:
     display_message(EXIT);
@@ -83,7 +81,6 @@ void prompt_user_for_input(int type) {
     do {
       scanf("%c", &proceed);
     } while ((proceed != 'c') && (proceed != 'C'));
-
     break;
 
   default:
@@ -94,7 +91,7 @@ void prompt_user_for_input(int type) {
   system("clear");
 }
 
-void initializeProgram() {
+void initialize_program() {
   check_file("first_names.txt");
   check_file("last_names.txt");
   check_file("countries.txt");
@@ -105,7 +102,7 @@ void initializeProgram() {
   read_file("countries.txt");
   read_file("email_suffixes.txt");
 
-  free_memory();
+//  free_memory();
 }
 
 void display_message(int type) {

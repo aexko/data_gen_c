@@ -3,16 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
-#define FILE_FIRST_NAMES 1
-#define FILE_LAST_NAMES 2
-#define FILE_COUNTRIES 3
-#define FILE_EMAIL_SUFFIXES 4
-
-// https://www.youtube.com/watch?v=vQno9S3yF80
-#define MAX_LENGTH 30
-#define MAX_LINES 1001
 // https://www.quora.com/How-can-I-read-a-file-into-a-buffer-in-C
 /* 8k buffer */
 #define BUFFER_SIZE 8192
@@ -24,11 +15,15 @@ int rows_last_names;
 int rows_countries;
 int rows_email_suffixes;
 
+/* 2d arrays */
 char **first_names;
 char **last_names;
 char **countries;
 char **email_suffixes;
 
+/**
+ * This function is not working, it creates segmentation fault as an error
+ */
 void free_memory() {
   size_t length = strlen((const char *)first_names);
   for (int i = 0; i < length; i++) {
@@ -55,6 +50,9 @@ void free_memory() {
   }
 
   free(first_names);
+  free(last_names);
+  free(countries);
+  free(email_suffixes);
 }
 
 int check_file(char *file_name) {
