@@ -5,6 +5,6 @@ int check_file(char *file_name);
 
 void read_file(char *file_name);
 void count_rows_file(char *file_name);
-void free_memory(char *name_pointer);
+void free_memory();
 
 #endif
