@@ -1,19 +1,19 @@
+
 #include "generate.h"
 #include "tablegen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 int initial_id = 1;
-extern char user_input_column_list[MAX_LENGTH_INPUT];
+extern char user_input_column_list[20];
+extern int row_count;
 
 void clean_array() {
   int number_of_values = count_values();
   printf("there are %d values in reality\n", number_of_values);
-  for (int i = 0; i < 20; i++) {
-    printf("%c\n", user_input_column_list[i]);
-  }
 }
 
 int count_values() {
@@ -31,7 +31,14 @@ int count_values() {
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
-  clean_array();
+//  clean_array();
+
+  for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
+    if (isdigit(user_input_column_list[i])) {
+      printf("its a number! %c\n", user_input_column_list[i]);
+    }
+
+  }
 
   //  for (int i = 0; i < 3; i++) {
   //    switch (user_input_column_list[i]) {

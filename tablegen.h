@@ -10,6 +10,8 @@
 #define CONFIRMATION '6'
 #define MAX_LENGTH_INPUT 20
 
+
+
 void initialize_program();
 void display_message(int type);
 void prompt_user_input(int type);

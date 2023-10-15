@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 char user_input_menu_choice;
 char user_input_column_list[MAX_LENGTH_INPUT];
 int row_count;
@@ -16,8 +15,6 @@ char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
   // test purposes
-  test();
-
   initialize_program();
 
   // prompting user start, reading input and clearing console
@@ -49,12 +46,7 @@ int main() {
   return 0;
 }
 
-
 void test() {}
-
-
-
-
 
 void display_summary_properties() {
   printf("Columns: %s\n", user_input_column_list);
@@ -113,7 +105,7 @@ void initialize_program() {
   read_file("countries.txt");
   read_file("email_suffixes.txt");
 
-//  free_memory();
+  //  free_memory();
 }
 
 void display_message(int type) {
