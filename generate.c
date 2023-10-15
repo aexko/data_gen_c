@@ -11,27 +11,8 @@ int initial_id = 1;
 extern char user_input_column_list[20];
 extern int row_count;
 
-void clean_array() {
-  int number_of_values = count_values();
-  printf("there are %d values in reality\n", number_of_values);
-}
-
-int count_values() {
-  char delim[] = ",";
-  char *pointer = strtok(user_input_column_list, delim);
-  int number_of_values = 0;
-
-  while (pointer != NULL) {
-    printf("%s\n", pointer);
-    pointer = strtok(NULL, delim);
-    number_of_values++;
-  }
-  return number_of_values;
-}
-
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
-//  clean_array();
 
   for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
     if (isdigit(user_input_column_list[i])) {
