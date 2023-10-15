@@ -13,6 +13,9 @@
 // https://www.youtube.com/watch?v=vQno9S3yF80
 #define MAX_LENGTH 30
 #define MAX_LINES 1001
+// https://www.quora.com/How-can-I-read-a-file-into-a-buffer-in-C
+/* 8k buffer */
+#define BUFFER_SIZE 8192
 
 const char *list_first_names[1000];
 
@@ -21,11 +24,12 @@ int rows_last_names;
 int rows_countries;
 int rows_email_suffixes;
 
+
 void create_storage() {
-  char *first_names[rows_first_names];
-  char *last_names[rows_last_names];
-  char *countries[rows_countries];
-  char *email_suffixes[rows_email_suffixes];
+  char **first_names[rows_first_names];
+  char **last_names[rows_last_names];
+  char **countries[rows_countries];
+  char **email_suffixes[rows_email_suffixes];
 }
 
 int check_file(char *file_name) {
@@ -46,7 +50,46 @@ int check_file(char *file_name) {
 
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
-  //  fill_storage();
+
+  char **lines;
+  int max_lines;
+
+  if (strcmp(file_name, "first_names.txt") == 0) {
+    lines = malloc(sizeof(char*) * rows_first_names);
+    max_lines = rows_first_names;
+  }
+  if (strcmp(file_name, "last_names.txt") == 0) {
+    lines = malloc(sizeof(char*) * rows_last_names);
+    max_lines = rows_last_names;
+
+  }
+  if (strcmp(file_name, "countries.txt") == 0) {
+    lines = malloc(sizeof(char*) * rows_countries);
+    max_lines = rows_countries;
+
+  }
+  if (strcmp(file_name, "email_suffixes.txt") == 0) {
+    lines = malloc(sizeof(char*) * rows_email_suffixes);
+    max_lines = rows_email_suffixes;
+  }
+
+  char buffer[BUFFER_SIZE];
+  int length = 0;
+  for (int i = 0; i < max_lines; i++ ) {
+
+    fgets(buffer, max_lines, file_handler);
+    length = strlen(buffer);
+    buffer[length - 1] = '\0';
+    lines[i] = malloc(length * sizeof (char));
+    strcpy(lines[i], buffer);
+  }
+
+  for (int i = 0; i < max_lines; i++ ) {
+    printf("printing the array of pointers: %s\n", lines[i] );
+
+  }
+
+
   fclose(file_handler);
 }
 
