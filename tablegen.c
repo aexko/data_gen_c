@@ -47,6 +47,7 @@ int main() {
     break;
   }
 
+  free_memory();
   return 0;
 }
 
@@ -121,9 +122,9 @@ void initializeProgram() {
   check_file("email_suffixes.txt");
 
   read_file("first_names.txt");
-  read_file("last_names.txt");
-  read_file("countries.txt");
-  read_file("email_suffixes.txt");
+//  read_file("last_names.txt");
+//  read_file("countries.txt");
+//  read_file("email_suffixes.txt");
 
 
 

@@ -25,12 +25,18 @@ int rows_countries;
 int rows_email_suffixes;
 
 
-void create_storage() {
-  char **first_names[rows_first_names];
-  char **last_names[rows_last_names];
-  char **countries[rows_countries];
-  char **email_suffixes[rows_email_suffixes];
+char **first_names;
+char **last_names;
+char **countries;
+char **email_suffixes;
+
+void free_memory(char* name_pointer) {
+  for (int i = 0; i < strlen(name_pointer); i++) {
+    printf("freeing %d", i);
+    free(name_pointer[i]);
+  }
 }
+
 
 int check_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
@@ -42,7 +48,6 @@ int check_file(char *file_name) {
     exit(1);
   } else {
     count_rows_file(file_name);
-    create_storage();
     fclose(file_handler);
     return 0;
   }
@@ -51,43 +56,44 @@ int check_file(char *file_name) {
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
 
-  char **lines;
+  char **data;
   int max_lines;
 
   if (strcmp(file_name, "first_names.txt") == 0) {
-    lines = malloc(sizeof(char*) * rows_first_names);
+    data = malloc(sizeof(char*) * rows_first_names);
     max_lines = rows_first_names;
   }
   if (strcmp(file_name, "last_names.txt") == 0) {
-    lines = malloc(sizeof(char*) * rows_last_names);
+    data = malloc(sizeof(char*) * rows_last_names);
     max_lines = rows_last_names;
 
   }
   if (strcmp(file_name, "countries.txt") == 0) {
-    lines = malloc(sizeof(char*) * rows_countries);
+    data = malloc(sizeof(char*) * rows_countries);
     max_lines = rows_countries;
 
   }
   if (strcmp(file_name, "email_suffixes.txt") == 0) {
-    lines = malloc(sizeof(char*) * rows_email_suffixes);
+    data = malloc(sizeof(char*) * rows_email_suffixes);
     max_lines = rows_email_suffixes;
   }
 
   char buffer[BUFFER_SIZE];
-  int length = 0;
+  int length;
   for (int i = 0; i < max_lines; i++ ) {
 
     fgets(buffer, max_lines, file_handler);
     length = strlen(buffer);
     buffer[length - 1] = '\0';
-    lines[i] = malloc(length * sizeof (char));
-    strcpy(lines[i], buffer);
+    data[i] = malloc(length * sizeof (char));
+    strcpy(data[i], buffer);
   }
 
+  first_names = data;
   for (int i = 0; i < max_lines; i++ ) {
-    printf("printing the array of pointers: %s\n", lines[i] );
-
+    printf("printing the array of pointers: %s\n", first_names[i] );
   }
+
 
 
   fclose(file_handler);
