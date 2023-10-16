@@ -14,10 +14,8 @@ int row_count;
 char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
-  // test purposes
   initialize_program();
-
-  // prompting user start, reading input and clearing console
+//  free_memory();
   prompt_user_input(MENU);
 
   switch (user_input_menu_choice) {
@@ -33,7 +31,6 @@ int main() {
     prompt_user_input(OUTPUT_NAME);
     display_summary_properties();
     prompt_user_input(CONFIRMATION);
-
     generate_data();
     break;
   case EXIT:
@@ -47,12 +44,6 @@ int main() {
 }
 
 void test() {}
-
-void display_summary_properties() {
-  printf("Columns: %s\n", user_input_column_list);
-  printf("Row count: %d\n", row_count);
-  printf("File name: %s\n", output_file_name);
-}
 
 void prompt_user_input(int type) {
   char proceed;
@@ -104,8 +95,12 @@ void initialize_program() {
   read_file("last_names.txt");
   read_file("countries.txt");
   read_file("email_suffixes.txt");
+}
 
-  //  free_memory();
+void display_summary_properties() {
+  printf("Columns: %s\n", user_input_column_list);
+  printf("Row count: %d\n", row_count);
+  printf("File name: %s\n", output_file_name);
 }
 
 void display_message(int type) {

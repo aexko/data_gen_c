@@ -18,7 +18,8 @@ void generate_data();
 
 char generate_random_char();
 int generate_random_number(int min, int max);
-int generate_id();
+
+char *generate_id();
 char *generate_first_name();
 const char *generate_last_name();
 const char *generate_country();

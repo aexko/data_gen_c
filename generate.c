@@ -1,7 +1,7 @@
 
 #include "generate.h"
-#include "tablegen.h"
 #include "io.h"
+#include "tablegen.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,74 +11,78 @@
 int initial_id = 0;
 extern char user_input_column_list[20];
 extern int row_count;
-extern char **data;
+extern char **first_names;
+extern char **last_names;
+extern char **countries;
+extern char **email_suffixes;
 
 char **array_output;
 
-
-
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
+  array_output = malloc(row_count * sizeof(char *));
 
-
-  for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
-    if (isdigit(user_input_column_list[i])) {
-
-      switch (user_input_column_list[i]) {
-      case USER_ID:
-        generate_id();
-        break;
-      case FIRST_NAME:
-        read_file("first_names.txt");
-        generate_first_name();
-
-        break;
-      case LAST_NAME:
-        read_file("last_names.txt");
-        generate_last_name();
-        break;
-      case COUNTRY:
-        read_file("countries.txt");
-        generate_country();
-        break;
-      case PHONE_NUMBER:
-        generate_phone_number();
-        break;
-      case EMAIL_ADDRESS:
-        read_file("email_suffixes.txt");
-        generate_email_address();
-        break;
-      case SIN:
-        generate_sin();
-        break;
-      case PASSWORD:
-        generate_password();
-        break;
+  for (int j = 0; j < row_count; j++) {
+    for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
+      if (isdigit(user_input_column_list[i])) {
+        switch (user_input_column_list[i]) {
+        case USER_ID:
+          array_output[i] = generate_id();
+          printf("content:: %s\n", array_output[i]);
+          break;
+        case FIRST_NAME:
+          generate_first_name();
+          break;
+        case LAST_NAME:
+          generate_last_name();
+          break;
+        case COUNTRY:
+          generate_country();
+          break;
+        case PHONE_NUMBER:
+          generate_phone_number();
+          break;
+        case EMAIL_ADDRESS:
+          generate_email_address();
+          break;
+        case SIN:
+          generate_sin();
+          break;
+        case PASSWORD:
+          generate_password();
+          break;
+        }
       }
     }
   }
+
+  save();
 }
 
+
+
 // id
-int generate_id() {
+char *generate_id() {
+
   printf("generating user_id\n");
-  return initial_id++;
+  initial_id++;
+  char *id = malloc(sizeof(char) * 10);
+  sprintf(id, "%d", initial_id);
+  return id;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
 char *generate_first_name() {
   printf("generating first_name\n");
-
-  //  char *first_name_random;
+  char *first_name_random;
   int random_number = generate_random_number(0, 1000);
   printf("random number: %d\n", random_number);
-  printf("data: %s", data[random_number]);
-
-
+  //  printf("data: %s", first_names[random_number]);
+  //  first_name_random = first_names[random_number];
   //  int length = strlen(first_name_random);
   //  first_name_random = malloc(length * sizeof(char));
   //  first_name_random[length - 1] = '\0';
-  return NULL;
+  return first_name_random;
 }
 
 const char *generate_last_name() {
@@ -92,16 +96,9 @@ const char *generate_country() {
   return NULL;
 }
 
-void generate_phone_number() {
-  printf("generating phone_number\n");
+void generate_phone_number() { printf("generating phone_number\n"); }
 
-}
-
-void generate_email_address() {
-  printf("generating email_adress\n");
-
-
-}
+void generate_email_address() { printf("generating email_adress\n"); }
 
 char *generate_password() {
   printf("printing password\n");

@@ -1,4 +1,5 @@
 #include "io.h"
+#include "tablegen.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,8 @@ char **countries;
 char **email_suffixes;
 
 char **data;
+
+extern char output_file_name[20];
 
 /**
  * This function is not working, it creates segmentation fault as an error
@@ -54,6 +57,24 @@ char **data;
 //   free(email_suffixes);
 // }
 
+void add_csv_extension() {
+  for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
+    if (output_file_name[i] == '\0') {
+      output_file_name[i] = '.';
+      output_file_name[i + 1] = 'c';
+      output_file_name[i + 2] = 's';
+      output_file_name[i + 3] = 'v';
+      break;
+    }
+  }
+}
+
+void save() {
+  add_csv_extension();
+  FILE *file_handler = fopen(output_file_name, "r");
+
+}
+
 int check_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   if (file_handler == NULL) {
@@ -72,7 +93,6 @@ int check_file(char *file_name) {
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   max_lines = determine_max_lines(file_name);
-
   data = malloc(sizeof(char *) * max_lines);
   char buffer[BUFFER_SIZE];
   unsigned length;
@@ -84,19 +104,13 @@ void read_file(char *file_name) {
     data[i] = malloc(length * sizeof(char));
     strcpy(data[i], buffer);
   }
-
-  first_names = malloc(max_lines * sizeof(char *));
-  first_names = data;
-
   bind_data(file_name);
-  for (int i = 0; i < max_lines; i++) {
-    printf("printing the array of pointers: %s\n", first_names[i]);
-  }
 
-  //  for (int i = 0; i < max_lines; i++) {
-  //    free(data[i]);
-  //  }
-  //  free(data);
+  // free data pointer
+  for (int i = 0; i < max_lines; i++) {
+    free(data[i]);
+  }
+  free(data);
 
   fclose(file_handler);
 }
@@ -105,6 +119,7 @@ void bind_data(char *file_name) {
   if (strcmp(file_name, "first_names.txt") == 0) {
     first_names = malloc(max_lines * sizeof(char *));
     first_names = data;
+    printf("%s", first_names[2]);
   }
   if (strcmp(file_name, "last_names.txt") == 0) {
     last_names = malloc(max_lines * sizeof(char *));
