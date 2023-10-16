@@ -1,81 +1,110 @@
 
 #include "generate.h"
 #include "tablegen.h"
+#include "io.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <ctype.h>
 
-int initial_id = 1;
+int initial_id = 0;
 extern char user_input_column_list[20];
 extern int row_count;
+extern char **data;
+
+char **array_output;
+
+
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
 
+
   for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
     if (isdigit(user_input_column_list[i])) {
-      printf("its a number! %c\n", user_input_column_list[i]);
+
+      switch (user_input_column_list[i]) {
+      case USER_ID:
+        generate_id();
+        break;
+      case FIRST_NAME:
+        read_file("first_names.txt");
+        generate_first_name();
+
+        break;
+      case LAST_NAME:
+        read_file("last_names.txt");
+        generate_last_name();
+        break;
+      case COUNTRY:
+        read_file("countries.txt");
+        generate_country();
+        break;
+      case PHONE_NUMBER:
+        generate_phone_number();
+        break;
+      case EMAIL_ADDRESS:
+        read_file("email_suffixes.txt");
+        generate_email_address();
+        break;
+      case SIN:
+        generate_sin();
+        break;
+      case PASSWORD:
+        generate_password();
+        break;
+      }
     }
-
   }
-
-  //  for (int i = 0; i < 3; i++) {
-  //    switch (user_input_column_list[i]) {
-  //    case USER_ID:
-  //      printf("generating user_id");
-  //      generate_id();
-  //      break;
-  //    case FIRST_NAME:
-  //      generate_first_name();
-  //      break;
-  //    case LAST_NAME:
-  //      generate_last_name();
-  //      break;
-  //    case COUNTRY:
-  //      generate_country();
-  //      break;
-  //    case PHONE_NUMBER:
-  //      generate_phone_number();
-  //      break;
-  //    case EMAIL_ADDRESS:
-  //      generate_email_address();
-  //      break;
-  //    case SIN:
-  //      generate_sin();
-  //      break;
-  //    case PASSWORD:
-  //      generate_password();
-  //      break;
-  //    }
-  //  }
 }
 
 // id
-int generate_id() { return initial_id++; }
+int generate_id() {
+  printf("generating user_id\n");
+  return initial_id++;
+}
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
 char *generate_first_name() {
+  printf("generating first_name\n");
+
   //  char *first_name_random;
   int random_number = generate_random_number(0, 1000);
-  printf("%d\n", random_number);
-  //
+  printf("random number: %d\n", random_number);
+  printf("data: %s", data[random_number]);
+
+
   //  int length = strlen(first_name_random);
   //  first_name_random = malloc(length * sizeof(char));
   //  first_name_random[length - 1] = '\0';
   return NULL;
 }
 
-const char *generate_last_name() { return NULL; }
+const char *generate_last_name() {
+  printf("generating last_name\n");
+  return NULL;
+}
 
-const char *generate_country() { return NULL; }
+const char *generate_country() {
+  printf("generating country\n");
 
-void generate_phone_number() {}
+  return NULL;
+}
 
-void generate_email_address() {}
+void generate_phone_number() {
+  printf("generating phone_number\n");
 
-void generate_password() {
+}
+
+void generate_email_address() {
+  printf("generating email_adress\n");
+
+
+}
+
+char *generate_password() {
+  printf("printing password\n");
   srand(time(NULL));
   int random_password_length =
       rand() % ((PASSWORD_MAX_VALUE + 1) - PASSWORD_MIN_VALUE) +
@@ -84,15 +113,18 @@ void generate_password() {
   printf("password length is %d\n", random_password_length);
 
   for (int i = 0; i < random_password_length; i++) {
-
     password_generated[i] = generate_random_char();
   }
   printf("password is %s\n", password_generated);
+  return NULL;
 }
 
 void generate_sin() {
+  printf("generating sin\n");
+  int buffer[BUFFER_SIZE];
+
   for (int i = 0; i < SIN_LENGTH; i++) {
-    generate_random_number(0, 9);
+    buffer[i] = generate_random_number(0, 9);
   }
 }
 

@@ -9,45 +9,50 @@ int rows_last_names;
 int rows_countries;
 int rows_email_suffixes;
 
+int nb_rows = 0;
+int max_lines;
+
 /* 2d arrays */
 char **first_names;
 char **last_names;
 char **countries;
 char **email_suffixes;
 
+char **data;
+
 /**
  * This function is not working, it creates segmentation fault as an error
  */
-void free_memory() {
-  size_t length = strlen((const char *)first_names);
-  for (int i = 0; i < length; i++) {
-    printf("freeing %d", i);
-    free(first_names[i]);
-  }
-
-  length = strlen((const char *)last_names);
-  for (int i = 0; i < length; i++) {
-    printf("freeing %d", i);
-    free(last_names[i]);
-  }
-
-  length = strlen((const char *)countries);
-  for (int i = 0; i < length; i++) {
-    printf("freeing %d", i);
-    free(countries[i]);
-  }
-
-  length = strlen((const char *)email_suffixes);
-  for (int i = 0; i < length; i++) {
-    printf("freeing %d", i);
-    free(email_suffixes[i]);
-  }
-
-  free(first_names);
-  free(last_names);
-  free(countries);
-  free(email_suffixes);
-}
+// void free_memory() {
+//   size_t length = strlen((const char *)first_names);
+//   for (int i = 0; i < length; i++) {
+//     printf("freeing %d", i);
+//     free(first_names[i]);
+//   }
+//
+//   length = strlen((const char *)last_names);
+//   for (int i = 0; i < length; i++) {
+//     printf("freeing %d", i);
+//     free(last_names[i]);
+//   }
+//
+//   length = strlen((const char *)countries);
+//   for (int i = 0; i < length; i++) {
+//     printf("freeing %d", i);
+//     free(countries[i]);
+//   }
+//
+//   length = strlen((const char *)email_suffixes);
+//   for (int i = 0; i < length; i++) {
+//     printf("freeing %d", i);
+//     free(email_suffixes[i]);
+//   }
+//
+//   free(first_names);
+//   free(last_names);
+//   free(countries);
+//   free(email_suffixes);
+// }
 
 int check_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
@@ -66,29 +71,11 @@ int check_file(char *file_name) {
 
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
+  max_lines = determine_max_lines(file_name);
 
-  char **data;
-  int max_lines;
-
-  if (strcmp(file_name, "first_names.txt") == 0) {
-    data = malloc(sizeof(char *) * rows_first_names);
-    max_lines = rows_first_names;
-  }
-  if (strcmp(file_name, "last_names.txt") == 0) {
-    data = malloc(sizeof(char *) * rows_last_names);
-    max_lines = rows_last_names;
-  }
-  if (strcmp(file_name, "countries.txt") == 0) {
-    data = malloc(sizeof(char *) * rows_countries);
-    max_lines = rows_countries;
-  }
-  if (strcmp(file_name, "email_suffixes.txt") == 0) {
-    data = malloc(sizeof(char *) * rows_email_suffixes);
-    max_lines = rows_email_suffixes;
-  }
-
+  data = malloc(sizeof(char *) * max_lines);
   char buffer[BUFFER_SIZE];
-  int length;
+  unsigned length;
   for (int i = 0; i < max_lines; i++) {
 
     fgets(buffer, max_lines, file_handler);
@@ -98,17 +85,37 @@ void read_file(char *file_name) {
     strcpy(data[i], buffer);
   }
 
-  first_names = data;
+
   for (int i = 0; i < max_lines; i++) {
-    printf("printing the array of pointers: %s\n", first_names[i]);
+    printf("printing the array of pointers: %s\n", data[i]);
   }
+
+  //  for (int i = 0; i < max_lines; i++) {
+  //    free(data[i]);
+  //  }
+  //  free(data);
 
   fclose(file_handler);
 }
 
+int determine_max_lines(char *file_name) {
+  if (strcmp(file_name, "first_names.txt") == 0) {
+    max_lines = rows_first_names;
+  }
+  if (strcmp(file_name, "last_names.txt") == 0) {
+    max_lines = rows_last_names;
+  }
+  if (strcmp(file_name, "countries.txt") == 0) {
+    max_lines = rows_countries;
+  }
+  if (strcmp(file_name, "email_suffixes.txt") == 0) {
+    max_lines = rows_email_suffixes;
+  }
+  return max_lines;
+}
+
 void count_rows_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
-  int nb_rows = 0;
   int c;
   while (!feof(file_handler) && !ferror(file_handler)) {
     c = fgetc(file_handler);
@@ -133,6 +140,8 @@ void count_rows_file(char *file_name) {
     rows_email_suffixes = nb_rows;
     printf("email_suffixes.txt %d\n", rows_email_suffixes);
   }
+
+  nb_rows = 0;
 
   fclose(file_handler);
 }
