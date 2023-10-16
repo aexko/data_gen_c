@@ -73,9 +73,9 @@ void add_csv_extension() {
 void save() {
   add_csv_extension();
   FILE *file_handler = fopen(output_file_name, "w+");
-  printf("ok");
+  printf("Ok: output has passed\n");
   for (int i = 0; i < 100; i++) {
-    fprintf(file_handler, "%c\n",array_output[i]);
+    fprintf(file_handler, "%s\n",array_output[i]);
   }
   fclose(file_handler);
 }
@@ -124,7 +124,6 @@ void bind_data(char *file_name) {
   if (strcmp(file_name, "first_names.txt") == 0) {
     first_names = malloc(max_lines * sizeof(char *));
     first_names = data;
-    printf("%s", first_names[2]);
   }
   if (strcmp(file_name, "last_names.txt") == 0) {
     last_names = malloc(max_lines * sizeof(char *));
