@@ -85,9 +85,12 @@ void read_file(char *file_name) {
     strcpy(data[i], buffer);
   }
 
+  first_names = malloc(max_lines * sizeof(char *));
+  first_names = data;
 
+  bind_data(file_name);
   for (int i = 0; i < max_lines; i++) {
-    printf("printing the array of pointers: %s\n", data[i]);
+    printf("printing the array of pointers: %s\n", first_names[i]);
   }
 
   //  for (int i = 0; i < max_lines; i++) {
@@ -96,6 +99,25 @@ void read_file(char *file_name) {
   //  free(data);
 
   fclose(file_handler);
+}
+
+void bind_data(char *file_name) {
+  if (strcmp(file_name, "first_names.txt") == 0) {
+    first_names = malloc(max_lines * sizeof(char *));
+    first_names = data;
+  }
+  if (strcmp(file_name, "last_names.txt") == 0) {
+    last_names = malloc(max_lines * sizeof(char *));
+    last_names = data;
+  }
+  if (strcmp(file_name, "countries.txt") == 0) {
+    countries = malloc(max_lines * sizeof(char *));
+    countries = data;
+  }
+  if (strcmp(file_name, "email_suffixes.txt") == 0) {
+    email_suffixes = malloc(max_lines * sizeof(char *));
+    email_suffixes = data;
+  }
 }
 
 int determine_max_lines(char *file_name) {

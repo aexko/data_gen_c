@@ -9,6 +9,6 @@ void count_rows_file(char *file_name);
 void free_memory();
 int determine_max_lines(char *name);
 void read_file(char *file_name);
-
+void bind_data(char *file_name);
 
 #endif
