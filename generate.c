@@ -68,7 +68,9 @@ char *generate_id() {
   initial_id++;
   char *id = malloc(sizeof(char) * 10);
   sprintf(id, "%d", initial_id);
-  return id;
+  char* save = id;
+  free(id);
+  return save;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function

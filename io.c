@@ -22,6 +22,7 @@ char **email_suffixes;
 char **data;
 
 extern char output_file_name[20];
+extern char **array_output;
 
 /**
  * This function is not working, it creates segmentation fault as an error
@@ -71,8 +72,12 @@ void add_csv_extension() {
 
 void save() {
   add_csv_extension();
-  FILE *file_handler = fopen(output_file_name, "r");
-
+  FILE *file_handler = fopen(output_file_name, "w+");
+  printf("ok");
+  for (int i = 0; i < 100; i++) {
+    fprintf(file_handler, "%c\n",array_output[i]);
+  }
+  fclose(file_handler);
 }
 
 int check_file(char *file_name) {
