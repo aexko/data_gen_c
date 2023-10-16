@@ -21,8 +21,8 @@ int generate_random_number(int min, int max);
 
 char *generate_id();
 char *generate_first_name();
-const char *generate_last_name();
-const char *generate_country();
+char *generate_last_name();
+char *generate_country();
 void generate_phone_number();
 void generate_email_address();
 char *generate_password();

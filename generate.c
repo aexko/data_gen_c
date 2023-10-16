@@ -56,7 +56,7 @@ void generate_data() {
     }
   }
 
-  save();
+//  save();
 }
 
 
@@ -65,12 +65,10 @@ void generate_data() {
 char *generate_id() {
 
   printf("generating user_id\n");
-  initial_id++;
-  char *id = malloc(sizeof(char) * 10);
-  sprintf(id, "%d", initial_id);
-  char* save = id;
-  free(id);
-  return save;
+  int i = initial_id++;
+  char *c;
+  c = (char *)&i;
+  return strdup(c);
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
@@ -78,7 +76,7 @@ char *generate_first_name() {
   printf("generating first_name\n");
   char *first_name_random;
   int random_number = generate_random_number(0, 1000);
-  printf("random number: %d\n", random_number);
+  printf("random number: %s\n", first_names[random_number]);
   //  printf("data: %s", first_names[random_number]);
   //  first_name_random = first_names[random_number];
   //  int length = strlen(first_name_random);
@@ -87,12 +85,15 @@ char *generate_first_name() {
   return first_name_random;
 }
 
-const char *generate_last_name() {
+char *generate_last_name() {
   printf("generating last_name\n");
-  return NULL;
+  char *last_name_random;
+  int random_number = generate_random_number(0,1000);
+
+  return last_name_random;
 }
 
-const char *generate_country() {
+char *generate_country() {
   printf("generating country\n");
 
   return NULL;
