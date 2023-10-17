@@ -21,47 +21,49 @@ char **array_output;
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
   int count = 0;
-  do {
+  while (count != row_count) {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
         printf("%c-", user_input_column_list[i]);
+//
+//        switch (user_input_column_list[i]) {
+//        case USER_ID:
+//          generate_id();
+//          break;
+//        case FIRST_NAME:
+//          generate_first_name();
+//          break;
+//        case LAST_NAME:
+//          generate_last_name();
+//          break;
+//        case COUNTRY:
+//          generate_country();
+//          break;
+//        case PHONE_NUMBER:
+//          generate_phone_number();
+//          break;
+//        case EMAIL_ADDRESS:
+//          generate_email_address();
+//          break;
+//        case SIN:
+//          generate_sin();
+//          break;
+//        case PASSWORD:
+//          generate_password();
+//          break;
+//        }
       }
     }
 
     printf("row %d\n", count);
     count++;
-  } while (count != row_count);
+  };
 
   //  for (int j = 0; j < MAX_LENGTH_INPUT; j++) {
   //    if (isdigit(user_input_column_list[j])) {
   //      printf("its a digit %d\n", j);
   //
-  //              switch (user_input_column_list[j]) {
-  //              case USER_ID:
-  //                generate_id();
-  //                break;
-  //              case FIRST_NAME:
-  //                generate_first_name();
-  //                break;
-  //              case LAST_NAME:
-  //                generate_last_name();
-  //                break;
-  //              case COUNTRY:
-  //                generate_country();
-  //                break;
-  //              case PHONE_NUMBER:
-  //                generate_phone_number();
-  //                break;
-  //              case EMAIL_ADDRESS:
-  //                generate_email_address();
-  //                break;
-  //              case SIN:
-  //                generate_sin();
-  //                break;
-  //              case PASSWORD:
-  //                generate_password();
-  //                break;
-  //              }
+  //
   //    }
   //
   //
@@ -93,8 +95,8 @@ char *generate_first_name() {
 
 char *generate_last_name() {
   printf("generating last_name\n");
-  char *last_name_random;
-  int random_number = generate_random_number(0, 1000);
+  //  char *last_name_random;
+  //  int random_number = generate_random_number(0, 1000);
 
   return NULL;
 }
