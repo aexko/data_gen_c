@@ -8,7 +8,7 @@
 #include <string.h>
 #include <time.h>
 
-int initial_id = 0;
+int initial_id = 1;
 extern char user_input_column_list[20];
 extern int row_count;
 extern char **first_names;
@@ -27,8 +27,10 @@ void generate_data() {
       if (isdigit(user_input_column_list[i])) {
         switch (user_input_column_list[i]) {
         case USER_ID:
+          printf("generating user_id\n");
           array_output[i] = generate_id();
           printf("content:: %s\n", array_output[i]);
+
           break;
         case FIRST_NAME:
           generate_first_name();
@@ -56,19 +58,14 @@ void generate_data() {
     }
   }
 
-//  save();
+  save();
 }
-
-
 
 // id
 char *generate_id() {
-
-  printf("generating user_id\n");
-  int i = initial_id++;
-  char *c;
-  c = (char *)&i;
-  return strdup(c);
+  char *id_str = malloc(20 * sizeof(char)); // Allocate memory for the string
+  sprintf(id_str, "%d", initial_id++);      // Convert the integer to a string
+  return id_str;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
@@ -82,15 +79,15 @@ char *generate_first_name() {
   //  int length = strlen(first_name_random);
   //  first_name_random = malloc(length * sizeof(char));
   //  first_name_random[length - 1] = '\0';
-  return first_name_random;
+  return NULL;
 }
 
 char *generate_last_name() {
   printf("generating last_name\n");
   char *last_name_random;
-  int random_number = generate_random_number(0,1000);
+  int random_number = generate_random_number(0, 1000);
 
-  return last_name_random;
+  return NULL;
 }
 
 char *generate_country() {
@@ -121,7 +118,7 @@ char *generate_password() {
 
 void generate_sin() {
   printf("generating sin\n");
-  int buffer[BUFFER_SIZE];
+  int buffer[SIN_LENGTH];
 
   for (int i = 0; i < SIN_LENGTH; i++) {
     buffer[i] = generate_random_number(0, 9);

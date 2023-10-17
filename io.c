@@ -1,6 +1,5 @@
 #include "io.h"
 #include "tablegen.h"
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,8 +73,8 @@ void save() {
   add_csv_extension();
   FILE *file_handler = fopen(output_file_name, "w+");
   printf("Ok: output has passed\n");
-  for (int i = 0; i < 100; i++) {
-    fprintf(file_handler, "%s\n",array_output[i]);
+  for (int i = 0; i < 10; i++) {
+    fprintf(file_handler, "OK");
   }
   fclose(file_handler);
 }
@@ -110,13 +109,6 @@ void read_file(char *file_name) {
     strcpy(data[i], buffer);
   }
   bind_data(file_name);
-
-  // free data pointer
-  for (int i = 0; i < max_lines; i++) {
-    free(data[i]);
-  }
-  free(data);
-
   fclose(file_handler);
 }
 
@@ -137,6 +129,14 @@ void bind_data(char *file_name) {
     email_suffixes = malloc(max_lines * sizeof(char *));
     email_suffixes = data;
   }
+
+  // free data pointer
+  for (int i = 0; i < max_lines; i++) {
+    free(data[i]);
+  }
+  free(data);
+
+
 }
 
 int determine_max_lines(char *file_name) {
