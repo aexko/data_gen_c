@@ -26,32 +26,32 @@ void generate_data() {
       if (isdigit(user_input_column_list[i])) {
         printf("%c-", user_input_column_list[i]);
 //
-//        switch (user_input_column_list[i]) {
-//        case USER_ID:
-//          generate_id();
-//          break;
-//        case FIRST_NAME:
-//          generate_first_name();
-//          break;
-//        case LAST_NAME:
-//          generate_last_name();
-//          break;
-//        case COUNTRY:
-//          generate_country();
-//          break;
-//        case PHONE_NUMBER:
-//          generate_phone_number();
-//          break;
-//        case EMAIL_ADDRESS:
-//          generate_email_address();
-//          break;
-//        case SIN:
-//          generate_sin();
-//          break;
-//        case PASSWORD:
-//          generate_password();
-//          break;
-//        }
+        switch (user_input_column_list[i]) {
+        case USER_ID:
+          generate_id();
+          break;
+        case FIRST_NAME:
+          generate_first_name();
+          break;
+        case LAST_NAME:
+          generate_last_name();
+          break;
+        case COUNTRY:
+          generate_country();
+          break;
+        case PHONE_NUMBER:
+          generate_phone_number();
+          break;
+        case EMAIL_ADDRESS:
+          generate_email_address();
+          break;
+        case SIN:
+          generate_sin();
+          break;
+        case PASSWORD:
+          generate_password();
+          break;
+        }
       }
     }
 
@@ -84,7 +84,7 @@ int generate_id() {
 char *generate_first_name() {
   printf("generating first_name\n");
   int random_number = generate_random_number(0, 1000);
-  printf("random number: %s\n", first_names[random_number]);
+//  printf("random number: %s\n", first_names[random_number]);
   //  printf("data: %s", first_names[random_number]);
   //  first_name_random = first_names[random_number];
   //  int length = strlen(first_name_random);
@@ -112,18 +112,18 @@ void generate_phone_number() { printf("generating phone_number\n"); }
 void generate_email_address() { printf("generating email_adress\n"); }
 
 char *generate_password() {
-  printf("printing password\n");
+  printf("generating password\n");
   srand(time(NULL));
   int random_password_length =
       rand() % ((PASSWORD_MAX_VALUE + 1) - PASSWORD_MIN_VALUE) +
       PASSWORD_MIN_VALUE;
   char password_generated[random_password_length];
-  printf("password length is %d\n", random_password_length);
+//  printf("password length is %d\n", random_password_length);
 
   for (int i = 0; i < random_password_length; i++) {
     password_generated[i] = generate_random_char();
   }
-  printf("password is %s\n", password_generated);
+//  printf("password is %s\n", password_generated);
   return NULL;
 }
 
@@ -145,7 +145,7 @@ char generate_random_char() {
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
   unsigned char random_char =
       generate_random_number(0, chars_authorized_length);
-  printf("%c\n", chars_authorized[random_char]);
+//  printf("%c\n", chars_authorized[random_char]);
   return chars_authorized[random_char];
 }
 
