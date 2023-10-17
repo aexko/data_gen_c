@@ -1,5 +1,7 @@
 #include "io.h"
+#include "generate.h"
 #include "tablegen.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,6 +24,9 @@ char **data;
 
 extern char output_file_name[20];
 extern char **array_output;
+extern int row_count;
+extern int initial_id;
+extern char user_input_column_list[20];
 
 /**
  * This function is not working, it creates segmentation fault as an error
@@ -71,12 +76,14 @@ void add_csv_extension() {
 
 void save() {
   add_csv_extension();
+
   FILE *file_handler = fopen(output_file_name, "w+");
-  printf("Ok: output has passed\n");
-  for (int i = 0; i < 10; i++) {
-    fprintf(file_handler, "OK");
-  }
+  printf("Saving...\n");
+
+
   fclose(file_handler);
+  printf("End of program\n");
+
 }
 
 int check_file(char *file_name) {
@@ -135,8 +142,6 @@ void bind_data(char *file_name) {
     free(data[i]);
   }
   free(data);
-
-
 }
 
 int determine_max_lines(char *file_name) {

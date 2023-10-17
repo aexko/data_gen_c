@@ -11,5 +11,5 @@ int determine_max_lines(char *name);
 void read_file(char *file_name);
 void bind_data(char *file_name);
 void save();
-
+void add_csv_extension();
 #endif

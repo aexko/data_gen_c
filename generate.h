@@ -19,7 +19,7 @@ void generate_data();
 char generate_random_char();
 int generate_random_number(int min, int max);
 
-char *generate_id();
+int generate_id();
 char *generate_first_name();
 char *generate_last_name();
 char *generate_country();
