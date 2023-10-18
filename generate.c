@@ -15,12 +15,17 @@ extern char **first_names;
 extern char **last_names;
 extern char **countries;
 extern char **email_suffixes;
-
+extern char output_file_name[20];
 char **array_output;
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
   int count = 0;
+  array_output = malloc(row_count * sizeof(char *) + 1);
+  array_output[row_count] = NULL;
+  FILE *file_handler = fopen(output_file_name, "w+");
+  printf("Saving...\n");
+
   while (count != row_count) {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
@@ -28,7 +33,11 @@ void generate_data() {
         //
         switch (user_input_column_list[i]) {
         case USER_ID:
-          generate_id();
+
+          array_output[i] = generate_id();
+          printf("WOW ITS IN CTHE ARRAY: %s\n", array_output[i]);
+          fprintf(file_handler, "%s\n", array_output[0]);
+
           break;
         case FIRST_NAME:
           generate_first_name();
@@ -55,7 +64,7 @@ void generate_data() {
       }
     }
 
-    printf("row %d\n", count);
+    printf("row %d --------------------------------------\n", count);
     count++;
   };
 
@@ -71,13 +80,20 @@ void generate_data() {
   //
   //
   //  }
-  save();
+  fclose(file_handler);
+  printf("End of program\n");
+  //  save();
 }
 
 // id
-int generate_id() {
-  printf("generating id            |\n");
-  return 0;
+char *generate_id() {
+  printf("generating id            |");
+  int id_int = initial_id++;
+  // max length of id is 8 because of 1M + we need to add 1 for null char
+  char *id_str = malloc(8 * sizeof(char));
+  sprintf(id_str, "%d", id_int);
+  //  printf("%s\n", id_str);
+  return id_str;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
@@ -129,12 +145,8 @@ char *generate_password() {
   int random_password_length =
       generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
   char password_generated[random_password_length + 1];
-  printf("password length is %d\n", random_password_length);
-  char random;
   for (int i = 0; i < random_password_length; i++) {
-    random = generate_random_char();
-    password_generated[i] = random;
-    printf("%c\n", random);
+    password_generated[i] = generate_random_char();
   }
   password_generated[random_password_length - 1] = '\0';
   printf("password: %s\n", password_generated);
