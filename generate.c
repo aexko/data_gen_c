@@ -26,7 +26,7 @@ struct Person {
   char *phone_number;
   char *email;
   char *sin;
-  char *password
+  char *password;
 };
 
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
@@ -53,7 +53,7 @@ void generate_data() {
 
           break;
         case FIRST_NAME:
-          array_output[i] = generate_first_name();
+          list_people[i].first_name = generate_first_name();
           break;
         case LAST_NAME:
           generate_last_name();
@@ -113,7 +113,7 @@ char *generate_id() {
 char *generate_first_name() {
   printf("generating first_name    |\n");
   char *first_name_str;
-  int random_number = generate_random_number(0, 1000);
+  unsigned int random_number = generate_random_number(0, 1000);
   printf("random number: %d\n", random_number);
   first_name_str = first_names[10];
   printf("%s", first_name_str);
@@ -158,7 +158,7 @@ void generate_sin() {
 
 char *generate_password() {
   printf("generating password      |");
-  int random_password_length =
+  unsigned int random_password_length =
       generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
   char password_generated[random_password_length + 1];
   for (int i = 0; i < random_password_length; i++) {
