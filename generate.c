@@ -18,9 +18,22 @@ extern char **email_suffixes;
 extern char output_file_name[20];
 char **array_output;
 
+struct Person {
+  char *id;
+  char *first_name;
+  char *last_name;
+  char *country;
+  char *phone_number;
+  char *email;
+  char *sin;
+  char *password
+};
+
 // source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
+  struct Person list_people[row_count];
   int count = 0;
+  add_csv_extension();
   array_output = malloc(row_count * sizeof(char *) + 1);
   array_output[row_count] = NULL;
   FILE *file_handler = fopen(output_file_name, "w+");
@@ -34,13 +47,13 @@ void generate_data() {
         switch (user_input_column_list[i]) {
         case USER_ID:
 
-          array_output[i] = generate_id();
-          printf("WOW ITS IN CTHE ARRAY: %s\n", array_output[i]);
-          fprintf(file_handler, "%s\n", array_output[0]);
+          list_people[i].id = generate_id();
+          printf("%s\n", list_people[i].id);
+          fprintf(file_handler, "%s,", list_people[i].id);
 
           break;
         case FIRST_NAME:
-          generate_first_name();
+          array_output[i] = generate_first_name();
           break;
         case LAST_NAME:
           generate_last_name();
@@ -62,6 +75,7 @@ void generate_data() {
           break;
         }
       }
+      fprintf(file_handler, "\n,");
     }
 
     printf("row %d --------------------------------------\n", count);
@@ -92,22 +106,24 @@ char *generate_id() {
   // max length of id is 8 because of 1M + we need to add 1 for null char
   char *id_str = malloc(8 * sizeof(char));
   sprintf(id_str, "%d", id_int);
-  //  printf("%s\n", id_str);
   return id_str;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
 char *generate_first_name() {
   printf("generating first_name    |\n");
-  //  printf("%s", first_names[10]);
-  //  int random_number = generate_random_number(0, 1000);
+  char *first_name_str;
+  int random_number = generate_random_number(0, 1000);
+  printf("random number: %d\n", random_number);
+  first_name_str = first_names[10];
+  printf("%s", first_name_str);
   //  printf("random number: %s\n", first_names[random_number]);
   //  printf("data: %s", first_names[random_number]);
   //  first_name_random = first_names[random_number];
   //  int length = strlen(first_name_random);
   //  first_name_random = malloc(length * sizeof(char));
   //  first_name_random[length - 1] = '\0';
-  return NULL;
+  return first_name_str;
 }
 
 char *generate_last_name() {
