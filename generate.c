@@ -24,8 +24,8 @@ void generate_data() {
   while (count != row_count) {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
-        printf("%c-", user_input_column_list[i]);
-//
+        printf("%c - ", user_input_column_list[i]);
+        //
         switch (user_input_column_list[i]) {
         case USER_ID:
           generate_id();
@@ -76,15 +76,16 @@ void generate_data() {
 
 // id
 int generate_id() {
-  printf("generating id\n");
+  printf("generating id            |\n");
   return 0;
 }
 
 // https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
 char *generate_first_name() {
-  printf("generating first_name\n");
-  int random_number = generate_random_number(0, 1000);
-//  printf("random number: %s\n", first_names[random_number]);
+  printf("generating first_name    |\n");
+  //  printf("%s", first_names[10]);
+  //  int random_number = generate_random_number(0, 1000);
+  //  printf("random number: %s\n", first_names[random_number]);
   //  printf("data: %s", first_names[random_number]);
   //  first_name_random = first_names[random_number];
   //  int length = strlen(first_name_random);
@@ -94,7 +95,9 @@ char *generate_first_name() {
 }
 
 char *generate_last_name() {
-  printf("generating last_name\n");
+  printf("generating last_name     |\n");
+  //  printf("%s", last_names[10]);
+
   //  char *last_name_random;
   //  int random_number = generate_random_number(0, 1000);
 
@@ -102,57 +105,60 @@ char *generate_last_name() {
 }
 
 char *generate_country() {
-  printf("generating country\n");
+  printf("generating country       |\n");
+  //  printf("%s", countries[10]);
 
   return NULL;
 }
 
-void generate_phone_number() { printf("generating phone_number\n"); }
+void generate_phone_number() { printf("generating phone_number  |\n"); }
 
-void generate_email_address() { printf("generating email_adress\n"); }
-
-char *generate_password() {
-  printf("generating password\n");
-  srand(time(NULL));
-  int random_password_length =
-      rand() % ((PASSWORD_MAX_VALUE + 1) - PASSWORD_MIN_VALUE) +
-      PASSWORD_MIN_VALUE;
-  char password_generated[random_password_length];
-//  printf("password length is %d\n", random_password_length);
-
-  for (int i = 0; i < random_password_length; i++) {
-    password_generated[i] = generate_random_char();
-  }
-//  printf("password is %s\n", password_generated);
-  return NULL;
+void generate_email_address() {
+  printf("generating email_address |\n");
+  //  printf("%s", email_suffixes[10]);
 }
 
 void generate_sin() {
-  printf("generating sin\n");
-  int buffer[SIN_LENGTH];
+  printf("generating sin           |");
+  unsigned int buffer = generate_random_number(100000000, 999999999);
+  printf("sin: %d\n", buffer);
+}
 
-  for (int i = 0; i < SIN_LENGTH; i++) {
-    buffer[i] = generate_random_number(0, 9);
+char *generate_password() {
+  printf("generating password      |");
+  int random_password_length =
+      generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
+  char password_generated[random_password_length + 1];
+  printf("password length is %d\n", random_password_length);
+  char random;
+  for (int i = 0; i < random_password_length; i++) {
+    random = generate_random_char();
+    password_generated[i] = random;
+    printf("%c\n", random);
   }
+  password_generated[random_password_length - 1] = '\0';
+  printf("password: %s\n", password_generated);
+  return NULL;
 }
 
 // to find total char in pointer
 // https://stackoverflow.com/questions/13551017/find-the-size-of-a-string-pointed-by-a-pointer
 char generate_random_char() {
-  const char chars_authorized[] = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjk"
-                                  "lzxcvbnm~!@#$%^&*()_+{}:\"<>?./;'[]";
+  char chars_authorized[] = "!\"#$'()*+-.\"/"
+                            "0123456789:<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ["
+                            "\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
   int chars_authorized_length =
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
   unsigned char random_char =
-      generate_random_number(0, chars_authorized_length);
-//  printf("%c\n", chars_authorized[random_char]);
+      generate_random_number(0, chars_authorized_length - 1);
+  //  printf("%c\n", chars_authorized[random_char]);
   return chars_authorized[random_char];
 }
 
 // to generate random int between range:
 // https://stackoverflow.com/questions/17846212/generate-a-random-number-between-1-and-10-in-c
-int generate_random_number(int min, int max) {
-  int random_number;
-  random_number = rand() % ((max + 1) - min) - min;
+unsigned int generate_random_number(int min, int max) {
+  unsigned int random_number;
+  random_number = (rand() % (max - min + 1)) + min;
   return random_number;
 }

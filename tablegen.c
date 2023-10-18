@@ -15,7 +15,6 @@ char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
   initialize_program();
-//  free_memory();
   prompt_user_input(MENU);
 
   switch (user_input_menu_choice) {
@@ -40,6 +39,9 @@ int main() {
     display_message(ERROR_INPUT);
     break;
   }
+
+    free_memory();
+
   return 0;
 }
 

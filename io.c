@@ -31,36 +31,39 @@ extern char user_input_column_list[20];
 /**
  * This function is not working, it creates segmentation fault as an error
  */
-// void free_memory() {
-//   size_t length = strlen((const char *)first_names);
-//   for (int i = 0; i < length; i++) {
-//     printf("freeing %d", i);
-//     free(first_names[i]);
-//   }
+void free_memory() {
+  free(first_names);
+  free(last_names);
+  free(countries);
+  free(email_suffixes);
+//  for (int i = 0; i < 1000; i++) {
+//    free(first_names[i]);
+//  }
+
+//  for (int i = 0; i < 1000; i++) {
+//    printf("freeing %d", i);
+//    free(last_names[i]);
+//  }
 //
-//   length = strlen((const char *)last_names);
-//   for (int i = 0; i < length; i++) {
-//     printf("freeing %d", i);
-//     free(last_names[i]);
-//   }
+//  for (int i = 0; i < 195; i++) {
+//    printf("freeing %d", i);
+//    free(countries[i]);
+//  }
 //
-//   length = strlen((const char *)countries);
-//   for (int i = 0; i < length; i++) {
-//     printf("freeing %d", i);
-//     free(countries[i]);
-//   }
-//
-//   length = strlen((const char *)email_suffixes);
-//   for (int i = 0; i < length; i++) {
-//     printf("freeing %d", i);
-//     free(email_suffixes[i]);
-//   }
-//
-//   free(first_names);
-//   free(last_names);
-//   free(countries);
-//   free(email_suffixes);
-// }
+//  for (int i = 0; i < 100; i++) {
+//    printf("freeing %d", i);
+//    free(email_suffixes[i]);
+//  }
+//    free(first_names);
+
+//  free(last_names);
+//  free(countries);
+//  free(email_suffixes);
+  printf("Memory cleared successfully\n");
+
+
+}
+
 
 void add_csv_extension() {
   for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
@@ -80,10 +83,8 @@ void save() {
   FILE *file_handler = fopen(output_file_name, "w+");
   printf("Saving...\n");
 
-
   fclose(file_handler);
   printf("End of program\n");
-
 }
 
 int check_file(char *file_name) {
@@ -115,7 +116,22 @@ void read_file(char *file_name) {
     data[i] = malloc(length * sizeof(char));
     strcpy(data[i], buffer);
   }
-  bind_data(file_name);
+
+
+  printf("size of first_names %d\n", max_lines);
+
+//
+//  for (int i =0; i < 1000; i++) {
+//    printf("%s", first_names[i]);
+//  }
+
+
+
+//  bind_data(file_name);
+
+
+
+
   fclose(file_handler);
 }
 
@@ -137,11 +153,14 @@ void bind_data(char *file_name) {
     email_suffixes = data;
   }
 
+
+
   // free data pointer
   for (int i = 0; i < max_lines; i++) {
     free(data[i]);
   }
   free(data);
+//  data = NULL;
 }
 
 int determine_max_lines(char *file_name) {
