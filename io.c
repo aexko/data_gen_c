@@ -120,14 +120,14 @@ void read_file(char *file_name) {
 
   printf("size of first_names %d\n", max_lines);
 
-//
-//  for (int i =0; i < 1000; i++) {
-//    printf("%s", first_names[i]);
-//  }
+    bind_data(file_name);
+
+  for (int i =0; i < 1000; i++) {
+    printf("%s\n", first_names[i]);
+  }
 
 
 
-//  bind_data(file_name);
 
 
 
@@ -156,10 +156,10 @@ void bind_data(char *file_name) {
 
 
   // free data pointer
-  for (int i = 0; i < max_lines; i++) {
-    free(data[i]);
-  }
-  free(data);
+//  for (int i = 0; i < max_lines; i++) {
+//    free(data[i]);
+//  }
+//  free(data);
 //  data = NULL;
 }
 
