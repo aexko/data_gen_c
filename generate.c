@@ -77,11 +77,15 @@ void generate_data() {
           break;
 
         case SIN:
-          generate_sin();
+          list_people[i].sin = generate_sin();
+          printf("%s\n", list_people[i].sin);
+
           break;
 
         case PASSWORD:
-          generate_password();
+          list_people[i].password = generate_password();
+          printf("%s\n", list_people[i].password);
+
           break;
         }
       }
@@ -129,38 +133,35 @@ char *generate_country() {
   return country_str;
 }
 
-void generate_phone_number() { printf("generating phone_number  |\n"); }
+char *generate_phone_number() {
+  printf("generating phone_number  | ");
+  return NULL;
+}
 
-void generate_email_address() { printf("generating email_address |\n"); }
+char *generate_email_address() {
+  printf("generating email_address | ");
+  return NULL;
+}
 
-void generate_sin() {
+char *generate_sin() {
   printf("generating sin           | ");
-
-
-//  int sin_int = initial_id++;
-//  // max length of id is 8 because of 1M + we need to add 1 for null char
-//  char *id_str = malloc(8 * sizeof(char));
-//  sprintf(id_str, "%d", id_int);
-//  return id_str;
-
-
-
-
-  unsigned int buffer = generate_random_number(100000000, 999999999);
-  printf("sin: %d\n", buffer);
+  unsigned int sin_int = generate_random_number(100000000, 999999999);
+  // max length of id is 8 because of 1M + we need to add 1 for null char
+  char *sin_str = malloc(8 * sizeof(int));
+  sprintf(sin_str, "%d", sin_int);
+  return sin_str;
 }
 
 char *generate_password() {
   printf("generating password      | ");
   unsigned int random_password_length =
       generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
-  char password_generated[random_password_length + 1];
+  char *password_ptr = malloc(sizeof(char) * random_password_length + 1);
   for (int i = 0; i < random_password_length; i++) {
-    password_generated[i] = generate_random_char();
+    password_ptr[i] = generate_random_char();
   }
-  password_generated[random_password_length - 1] = '\0';
-  printf("password: %s\n", password_generated);
-  return NULL;
+  password_ptr[random_password_length] = '\0';
+  return password_ptr;
 }
 
 char generate_random_char() {

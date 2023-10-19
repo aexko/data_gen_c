@@ -23,9 +23,9 @@ char *generate_id();
 char *generate_first_name();
 char *generate_last_name();
 char *generate_country();
-void generate_phone_number();
-void generate_email_address();
+char *generate_phone_number();
+char *generate_email_address();
+char *generate_sin();
 char *generate_password();
-void generate_sin();
 
 #endif
