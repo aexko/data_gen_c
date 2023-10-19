@@ -29,7 +29,6 @@ struct Person {
   char *password;
 };
 
-// source:https://stackoverflow.com/questions/15822660/how-to-parse-a-string-separated-by-commas
 void generate_data() {
   struct Person list_people[row_count];
   int count = 0;
@@ -43,117 +42,116 @@ void generate_data() {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
         printf("%c - ", user_input_column_list[i]);
-        //
         switch (user_input_column_list[i]) {
         case USER_ID:
 
           list_people[i].id = generate_id();
           printf("%s\n", list_people[i].id);
           fprintf(file_handler, "%s,", list_people[i].id);
-
           break;
+
         case FIRST_NAME:
           list_people[i].first_name = generate_first_name();
           printf("%s\n", list_people[i].first_name);
           fprintf(file_handler, "%s,", list_people[i].first_name);
+          break;
+
+        case LAST_NAME:
+          list_people[i].last_name = generate_last_name();
+          printf("%s\n", list_people[i].last_name);
 
           break;
-        case LAST_NAME:
-          generate_last_name();
-          break;
+
         case COUNTRY:
-          generate_country();
+          list_people[i].country = generate_country();
+          printf("%s\n", list_people[i].country);
+
           break;
+
         case PHONE_NUMBER:
           generate_phone_number();
           break;
+
         case EMAIL_ADDRESS:
           generate_email_address();
           break;
+
         case SIN:
           generate_sin();
           break;
+
         case PASSWORD:
           generate_password();
           break;
         }
       }
-      fprintf(file_handler, "\n,");
     }
 
-    printf("row %d --------------------------------------\n", count);
+    printf("row %d -------------------------------------------------\n", count);
     count++;
-  };
+  }
 
-  //  for (int j = 0; j < MAX_LENGTH_INPUT; j++) {
-  //    if (isdigit(user_input_column_list[j])) {
-  //      printf("its a digit %d\n", j);
-  //
-  //
-  //    }
-  //
-  //
-  //
-  //
-  //
-  //  }
   fclose(file_handler);
   printf("End of program\n");
-  //  save();
 }
 
 // id
 char *generate_id() {
-  printf("generating id            |");
-  int id_int = initial_id++;
+  printf("generating id            | ");
+  unsigned int id_int = initial_id++;
   // max length of id is 8 because of 1M + we need to add 1 for null char
   char *id_str = malloc(8 * sizeof(char));
   sprintf(id_str, "%d", id_int);
   return id_str;
 }
 
-// https://stackoverflow.com/questions/1496313/returning-a-c-string-from-a-function
 char *generate_first_name() {
-  printf("generating first_name    |");
+  printf("generating first_name    | ");
   char *first_name_str;
   unsigned int random_number = generate_random_number(0, 999);
-    printf("random number: %d\n", random_number);
   first_name_str = first_names[random_number];
   return first_name_str;
 }
 
 char *generate_last_name() {
-  printf("generating last_name     |\n");
-  //  printf("%s", last_names[10]);
-
-  //  char *last_name_random;
-  //  int random_number = generate_random_number(0, 1000);
-
-  return NULL;
+  printf("generating last_name     | ");
+  char *last_name_str;
+  unsigned int random_number = generate_random_number(0, 999);
+  last_name_str = last_names[random_number];
+  return last_name_str;
 }
 
 char *generate_country() {
-  printf("generating country       |\n");
-  //  printf("%s", countries[10]);
-
-  return NULL;
+  printf("generating country       | ");
+  char *country_str;
+  unsigned int random_number = generate_random_number(0, 194);
+  country_str = countries[random_number];
+  return country_str;
 }
 
 void generate_phone_number() { printf("generating phone_number  |\n"); }
 
-void generate_email_address() {
-  printf("generating email_address |\n");
-  //  printf("%s", email_suffixes[10]);
-}
+void generate_email_address() { printf("generating email_address |\n"); }
 
 void generate_sin() {
-  printf("generating sin           |");
+  printf("generating sin           | ");
+
+
+//  int sin_int = initial_id++;
+//  // max length of id is 8 because of 1M + we need to add 1 for null char
+//  char *id_str = malloc(8 * sizeof(char));
+//  sprintf(id_str, "%d", id_int);
+//  return id_str;
+
+
+
+
   unsigned int buffer = generate_random_number(100000000, 999999999);
   printf("sin: %d\n", buffer);
 }
 
 char *generate_password() {
-  printf("generating password      |");
+  printf("generating password      | ");
   unsigned int random_password_length =
       generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
   char password_generated[random_password_length + 1];
@@ -165,8 +163,6 @@ char *generate_password() {
   return NULL;
 }
 
-// to find total char in pointer
-// https://stackoverflow.com/questions/13551017/find-the-size-of-a-string-pointed-by-a-pointer
 char generate_random_char() {
   char chars_authorized[] = "!\"#$'()*+-.\"/"
                             "0123456789:<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ["
@@ -175,12 +171,9 @@ char generate_random_char() {
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
   unsigned char random_char =
       generate_random_number(0, chars_authorized_length - 1);
-  //  printf("%c\n", chars_authorized[random_char]);
   return chars_authorized[random_char];
 }
 
-// to generate random int between range:
-// https://stackoverflow.com/questions/17846212/generate-a-random-number-between-1-and-10-in-c
 unsigned int generate_random_number(int min, int max) {
   unsigned int random_number;
   random_number = (rand() % (max - min + 1)) + min;
