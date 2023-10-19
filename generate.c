@@ -54,7 +54,9 @@ void generate_data() {
           break;
         case FIRST_NAME:
           list_people[i].first_name = generate_first_name();
-          printf("%s", list_people[i].first_name);
+          printf("%s\n", list_people[i].first_name);
+          fprintf(file_handler, "%s,", list_people[i].first_name);
+
           break;
         case LAST_NAME:
           generate_last_name();
@@ -114,15 +116,9 @@ char *generate_id() {
 char *generate_first_name() {
   printf("generating first_name    |");
   char *first_name_str;
-  unsigned int random_number = generate_random_number(0, 1000);
-  printf("random number: %d\n", random_number);
+  unsigned int random_number = generate_random_number(0, 999);
+    printf("random number: %d\n", random_number);
   first_name_str = first_names[random_number];
-  //  printf("random number: %s\n", first_names[random_number]);
-  //  printf("data: %s", first_names[random_number]);
-  //  first_name_random = first_names[random_number];
-  //  int length = strlen(first_name_random);
-  //  first_name_random = malloc(length * sizeof(char));
-  //  first_name_random[length - 1] = '\0';
   return first_name_str;
 }
 
