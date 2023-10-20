@@ -41,43 +41,45 @@ void generate_data() {
         switch (user_input_column_list[i]) {
         case USER_ID:
 
-          list_people[i].id = generate_id();
-          printf("%s\n", list_people[i].id);
+          list_people[count].id = generate_id();
+          printf("%s\n", list_people[count].id);
           break;
 
         case FIRST_NAME:
-          list_people[i].first_name = generate_first_name();
-          printf("%s\n", list_people[i].first_name);
+          list_people[count].first_name = generate_first_name();
+          printf("%s\n", list_people[count].first_name);
           break;
 
         case LAST_NAME:
-          list_people[i].last_name = generate_last_name();
-          printf("%s\n", list_people[i].last_name);
+          list_people[count].last_name = generate_last_name();
+          printf("%s\n", list_people[count].last_name);
           break;
 
         case COUNTRY:
-          list_people[i].country = generate_country();
-          printf("%s\n", list_people[i].country);
+          list_people[count].country = generate_country();
+          printf("%s\n", list_people[count].country);
           break;
 
         case PHONE_NUMBER:
-          generate_phone_number();
+          list_people[count].phone_number = generate_phone_number();
+          printf("%s\n", list_people[count].phone_number);
+
           break;
 
         case EMAIL_ADDRESS:
-          list_people[i].country = generate_email_address(
-              list_people[i].first_name, list_people[i].last_name);
+          list_people[count].country = generate_email_address(
+              list_people[count].first_name, list_people[count].last_name);
 
           break;
 
         case SIN:
-          list_people[i].sin = generate_sin();
-          printf("%s\n", list_people[i].sin);
+          list_people[count].sin = generate_sin();
+          printf("%s\n", list_people[count].sin);
           break;
 
         case PASSWORD:
-          list_people[i].password = generate_password();
-          printf("%s\n", list_people[i].password);
+          list_people[count].password = generate_password();
+          printf("%s\n", list_people[count].password);
           break;
         }
       }
@@ -135,7 +137,6 @@ char *generate_phone_number() {
   char index_code_str[4];
   index_code_str[3] = '\0';
   sprintf(index_code_str, "%d", index_code);
-  printf("\nindex_code_str: %s\n", index_code_str);
 
   char hyphen_str[2];
   char hyphen = '-';
@@ -145,20 +146,25 @@ char *generate_phone_number() {
   char last_digits_str[5];
   last_digits_str[4] = '\0';
   sprintf(last_digits_str, "%d", last_digits);
-  printf("last_digits_str: %s\n", last_digits_str);
 
   char *phone_number_str = append_strings(index_code_str, hyphen_str);
   phone_number_str = append_strings(phone_number_str, last_digits_str);
-  printf("%s\n", phone_number_str);
 
   return phone_number_str;
 }
 
 char *generate_email_address(char *first_name, char *last_name) {
   printf("generating email_address | \n");
-  unsigned int random_number = generate_random_number(0, 99);
-  char *email_suffix = email_suffixes[random_number];
-  printf("email_suffix: %s\n", email_suffix);
+  unsigned int prefix_len = strlen(last_name) + 1;
+  for (int i = 0; i < prefix_len; i++) {
+    printf("OK\n");
+  }
+  //  printf("prefix_len: %d\n", prefix_len);
+  //  char prefix[prefix_len];
+  //
+  //  unsigned int random_number = generate_random_number(0, 99);
+  char *email_suffix = NULL;
+  //  printf("email_suffix: %s\n", email_suffix);
   //  unsigned int prefix_len = strlen(last_name+1) ;
   //  printf("prefix_len: %d\n", prefix_len);
 
