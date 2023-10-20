@@ -9,7 +9,6 @@
 #define EMAIL_ADDRESS '6'
 #define SIN '7'
 #define PASSWORD '8'
-#define SIN_LENGTH '9'
 #define PASSWORD_MAX_VALUE 16
 #define PASSWORD_MIN_VALUE 6
 #define BUFFER_SIZE 8192
@@ -19,7 +18,7 @@ void generate_data();
 char generate_random_char();
 unsigned int generate_random_number(int min, int max);
 char *append_strings(char *first_string, char *second_string);
-char *convert_to_lowercase(char *string);
+void convert_to_lowercase(char *string);
 
 char *generate_id();
 char *generate_first_name();

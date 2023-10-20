@@ -16,6 +16,7 @@ extern char **last_names;
 extern char **countries;
 extern char **email_suffixes;
 extern char output_file_name[20];
+
 struct Person {
   char *id;
   char *first_name;
@@ -70,7 +71,6 @@ void generate_data() {
           list_people[count].email = generate_email_address(
               list_people[count].first_name, list_people[count].last_name);
           printf("%s\n", list_people[count].email);
-
 
           break;
 
@@ -166,11 +166,11 @@ char *generate_email_address(char *first_name, char *last_name) {
   unsigned int prefix_len = 1 + strlen(last_name) + 1;
   char prefix[prefix_len];
   prefix[prefix_len - 1] = '\0';
-  first_name = convert_to_lowercase(first_name);
+convert_to_lowercase(first_name);
 
   char first_letter_str[2];
   char first_letter = first_name[0];
-  last_name = convert_to_lowercase(last_name);
+ convert_to_lowercase(last_name);
 
   sprintf(first_letter_str, "%c", first_letter);
 
@@ -258,10 +258,9 @@ char *append_strings(char *first_string, char *second_string) {
   return result;
 }
 
-char *convert_to_lowercase(char *string) {
+ void convert_to_lowercase(char *string) {
   unsigned string_len = strlen(string);
   for (int i = 0; i < string_len; i++) {
     string[i] = tolower(string[i]);
   }
-  return string;
 }
