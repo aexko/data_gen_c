@@ -18,6 +18,7 @@ void generate_data();
 
 char generate_random_char();
 unsigned int generate_random_number(int min, int max);
+char *append_strings(char *first_string, char *second_string);
 
 char *generate_id();
 char *generate_first_name();

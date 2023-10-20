@@ -128,33 +128,28 @@ char *generate_country() {
 
 char *generate_phone_number() {
   printf("generating phone_number  | ");
+
   unsigned int random_number = generate_random_number(0, 9);
   int list_index_codes[10] = {398, 270, 925, 867, 209, 429, 908, 997, 444, 219};
   int index_code = list_index_codes[random_number];
-  char *index_code_ptr = malloc(sizeof (int) * 3);
-  sprintf(index_code_ptr, "%d", index_code);
-  printf("%s", index_code_ptr);
+  char index_code_str[4];
+  index_code_str[3] = '\0';
+  sprintf(index_code_str, "%d", index_code);
+  printf("\nindex_code_str: %s\n", index_code_str);
+
+  char hyphen_str[2];
+  char hyphen = '-';
+  sprintf(hyphen_str, "%c", hyphen);
 
   unsigned int last_digits = generate_random_number(1000, 9999);
-  char *last_digits_ptr = malloc(sizeof (int) * 4);
-  sprintf(last_digits_ptr, "%d", last_digits);
+  char last_digits_str[5];
+  last_digits_str[4] = '\0';
+  sprintf(last_digits_str, "%d", last_digits);
+  printf("last_digits_str: %s\n", last_digits_str);
 
-  char *hyphen_ptr = malloc(2);
-  hyphen_ptr[0] = '-';
-  hyphen_ptr[1] = '\0';
-  printf("%s", hyphen_ptr);
-
-  printf("%s\n", last_digits_ptr);
-
-  char *phone_number_str = malloc(9 * sizeof(char));
-  strncat(phone_number_str, index_code_ptr, 3);
-  strncat(phone_number_str, hyphen_ptr, 1);
-  strncat(phone_number_str, last_digits_ptr, 4);
-  phone_number_str[8] = '\0';
-
-
+  char *phone_number_str = append_strings(index_code_str, hyphen_str);
+  phone_number_str = append_strings(phone_number_str, last_digits_str);
   printf("%s\n", phone_number_str);
-
 
   return phone_number_str;
 }
@@ -223,4 +218,22 @@ unsigned int generate_random_number(int min, int max) {
   unsigned int random_number;
   random_number = (rand() % (max - min + 1)) + min;
   return random_number;
+}
+
+char *append_strings(char *first_string, char *second_string) {
+  unsigned int total_string_len =
+      strlen(first_string) + strlen(second_string) + 1; // +1 for null end
+
+  char *result = calloc(total_string_len, sizeof(char));
+
+  for (int i = 0; i < strlen(first_string); i++) {
+    result[i] = first_string[i];
+  }
+
+  for (int i = 0; i < strlen(second_string); i++) {
+    result[strlen(first_string) + i] = second_string[i];
+  }
+
+  result[total_string_len - 1] = '\0';
+  return result;
 }
