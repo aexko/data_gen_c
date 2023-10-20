@@ -67,8 +67,10 @@ void generate_data() {
           break;
 
         case EMAIL_ADDRESS:
-          list_people[count].country = generate_email_address(
+          list_people[count].email = generate_email_address(
               list_people[count].first_name, list_people[count].last_name);
+          printf("%s\n", list_people[count].email);
+
 
           break;
 
@@ -154,16 +156,14 @@ char *generate_phone_number() {
 }
 
 char *generate_email_address(char *first_name, char *last_name) {
-  printf("generating email_address | \n");
+  printf("generating email_address | ");
   unsigned int random_number = generate_random_number(0, 99);
   char *email_suffix_str = email_suffixes[random_number];
-  printf("email_suffix_str: %s\n", email_suffix_str);
   /* first_letter of first_name + full last_name + @ + email_suffix_str */
   //  int email_len = 1 + strlen(last_name) + 1 + strlen(email_suffix_str);
 
   /* first letter of first_name + full last_name + null */
   unsigned int prefix_len = 1 + strlen(last_name) + 1;
-  printf("prefix_len: %d\n", prefix_len);
   char prefix[prefix_len];
   prefix[prefix_len - 1] = '\0';
   first_name = convert_to_lowercase(first_name);
@@ -197,7 +197,6 @@ char *generate_email_address(char *first_name, char *last_name) {
   // append first_name + last_name + @
 
   // append email_suffix_str
-  printf("%s\n", email_str);
   return email_str;
 }
 
@@ -264,6 +263,5 @@ char *convert_to_lowercase(char *string) {
   for (int i = 0; i < string_len; i++) {
     string[i] = tolower(string[i]);
   }
-  printf("%s\n", string);
   return string;
 }
