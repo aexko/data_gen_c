@@ -155,35 +155,50 @@ char *generate_phone_number() {
 
 char *generate_email_address(char *first_name, char *last_name) {
   printf("generating email_address | \n");
-  unsigned int prefix_len = strlen(last_name) + 1;
-  for (int i = 0; i < prefix_len; i++) {
-    printf("OK\n");
-  }
-  //  printf("prefix_len: %d\n", prefix_len);
-  //  char prefix[prefix_len];
+  unsigned int random_number = generate_random_number(0, 99);
+  char *email_suffix_str = email_suffixes[random_number];
+  printf("email_suffix_str: %s\n", email_suffix_str);
+  /* first_letter of first_name + full last_name + @ + email_suffix_str */
+  //  int email_len = 1 + strlen(last_name) + 1 + strlen(email_suffix_str);
+
+  /* first letter of first_name + full last_name + null */
+  unsigned int prefix_len = 1 + strlen(last_name) + 1;
+  printf("prefix_len: %d\n", prefix_len);
+  char prefix[prefix_len];
+  prefix[prefix_len - 1] = '\0';
+  first_name = convert_to_lowercase(first_name);
+
+  char first_letter_str[2];
+  char first_letter = first_name[0];
+  last_name = convert_to_lowercase(last_name);
+
+  sprintf(first_letter_str, "%c", first_letter);
+
+  char at_str[2];
+  char at = '@';
+  sprintf(at_str, "%c", at);
+
+  char *email_str = append_strings(first_letter_str, last_name);
+  email_str = append_strings(email_str, at_str);
+  email_str = append_strings(email_str, email_suffix_str);
   //
-  //  unsigned int random_number = generate_random_number(0, 99);
-  char *email_suffix = NULL;
-  //  printf("email_suffix: %s\n", email_suffix);
-  //  unsigned int prefix_len = strlen(last_name+1) ;
-  //  printf("prefix_len: %d\n", prefix_len);
 
   /* first letter of first_name + last_name + @ */
 
-  //  unsigned int email_suffix_len = 1 + strlen(email_suffix);
+  //  unsigned int email_suffix_len = 1 + strlen(email_suffix_str);
   //  char *email_str = malloc(sizeof(char) * email_prefix_len +
   //  email_suffix_len);
   //
   //  email_str[0] = first_name[0];
   //  strncat(email_str, last_name, email_prefix_len);
   //  email_str[email_prefix_len - 1] = '@';
-  //  strncat(email_str, email_suffix, email_prefix_len);
+  //  strncat(email_str, email_suffix_str, email_prefix_len);
   //  printf("%s\n", email_str);
   // append first_name + last_name + @
 
-  // append email_suffix
-
-  return email_suffix;
+  // append email_suffix_str
+  printf("%s\n", email_str);
+  return email_str;
 }
 
 char *generate_sin() {
@@ -242,4 +257,13 @@ char *append_strings(char *first_string, char *second_string) {
 
   result[total_string_len - 1] = '\0';
   return result;
+}
+
+char *convert_to_lowercase(char *string) {
+  unsigned string_len = strlen(string);
+  for (int i = 0; i < string_len; i++) {
+    string[i] = tolower(string[i]);
+  }
+  printf("%s\n", string);
+  return string;
 }
