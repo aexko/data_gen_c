@@ -205,12 +205,6 @@ char generate_random_char() {
   int chars_authorized_length =
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
 
-  for (int i = 0; i < chars_authorized_length; i++) {
-    printf("Result when a printable character %c is passed to isprint(): %d\n",
-           chars_authorized[i], isprint(chars_authorized[i]));
-    printf("________________");
-  }
-
   unsigned char random_char =
       // -2 because the index starts at 0, and because the last index is a null
       generate_random_number(0, chars_authorized_length - 2);
