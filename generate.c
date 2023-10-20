@@ -59,13 +59,13 @@ void generate_data() {
         case LAST_NAME:
           list_people[i].last_name = generate_last_name();
           printf("%s\n", list_people[i].last_name);
-
+          fprintf(file_handler, "%s,", list_people[i].last_name);
           break;
 
         case COUNTRY:
           list_people[i].country = generate_country();
           printf("%s\n", list_people[i].country);
-
+          fprintf(file_handler, "%s,", list_people[i].country);
           break;
 
         case PHONE_NUMBER:
@@ -73,19 +73,22 @@ void generate_data() {
           break;
 
         case EMAIL_ADDRESS:
-          generate_email_address();
+          list_people[i].country = generate_email_address(
+              list_people[i].first_name, list_people[i].last_name);
+          fprintf(file_handler, "%s,", list_people[i].email);
+
           break;
 
         case SIN:
           list_people[i].sin = generate_sin();
           printf("%s\n", list_people[i].sin);
-
+          fprintf(file_handler, "%s,", list_people[i].sin);
           break;
 
         case PASSWORD:
           list_people[i].password = generate_password();
           printf("%s\n", list_people[i].password);
-
+          fprintf(file_handler, "%s,", list_people[i].password);
           break;
         }
       }
@@ -134,12 +137,44 @@ char *generate_country() {
 }
 
 char *generate_phone_number() {
-  printf("generating phone_number  | ");
-  return NULL;
+  printf("generating phone_number  | \n");
+  unsigned int random_number = generate_random_number(0, 9);
+  int list_index_codes[10] = {398, 270, 925, 867, 209, 429, 908, 997, 444, 219};
+  int index_code = list_index_codes[random_number];
+  unsigned char index_code_char = index_code + '0';
+
+  unsigned int last_digits = generate_random_number(1000, 9999);
+  unsigned char last_digits_char = last_digits + '0';
+  /* +1 because we need to end by a null char */
+  char *phone_number_str = malloc(sizeof(char) * 8 + 1);
+  phone_number_str[strlen(phone_number_str) - 1] = '\0';
+
+  return phone_number_str;
 }
 
-char *generate_email_address() {
-  printf("generating email_address | ");
+char *generate_email_address(char *first_name, char *last_name) {
+  printf("generating email_address | \n");
+  unsigned int random_number = generate_random_number(0, 99);
+  char *email_suffix = email_suffixes[random_number];
+  printf("email_suffix: %s\n", email_suffix);
+  //  unsigned int prefix_len = strlen(last_name+1) ;
+  //  printf("prefix_len: %d\n", prefix_len);
+
+  /* first letter of first_name + last_name + @ */
+
+  //  unsigned int email_suffix_len = 1 + strlen(email_suffix);
+  //  char *email_str = malloc(sizeof(char) * email_prefix_len +
+  //  email_suffix_len);
+  //
+  //  email_str[0] = first_name[0];
+  //  strncat(email_str, last_name, email_prefix_len);
+  //  email_str[email_prefix_len - 1] = '@';
+  //  strncat(email_str, email_suffix, email_prefix_len);
+  //  printf("%s\n", email_str);
+  // append first_name + last_name + @
+
+  // append email_suffix
+
   return NULL;
 }
 
