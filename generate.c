@@ -131,13 +131,33 @@ char *generate_phone_number() {
   unsigned int random_number = generate_random_number(0, 9);
   int list_index_codes[10] = {398, 270, 925, 867, 209, 429, 908, 997, 444, 219};
   int index_code = list_index_codes[random_number];
-  unsigned char index_code_char = index_code + '0';
+  char *index_code_ptr = malloc(sizeof (int) * 3);
+  sprintf(index_code_ptr, "%d", index_code);
+  printf("this is char[0]: %c\n", index_code_ptr[0]);
+  printf("this is char[1]: %c\n", index_code_ptr[1]);
+  printf("this is char[2]: %c\n", index_code_ptr[2]);
+  printf("this is char %s\n", index_code_ptr);
 
   unsigned int last_digits = generate_random_number(1000, 9999);
-  unsigned char last_digits_char = last_digits + '0';
-  /* +1 because we need to end by a null char */
-  char *phone_number_str = malloc(sizeof(char) * 8 + 1);
-  phone_number_str[strlen(phone_number_str) - 1] = '\0';
+  char *last_digits_ptr = malloc(sizeof (int) * 4);
+  sprintf(last_digits_ptr, "%d", last_digits);
+
+  char *hyphen_ptr = malloc(2);
+  hyphen_ptr[0] = '-';
+  hyphen_ptr[1] = '\0';
+  printf("%s", hyphen_ptr);
+
+  printf("%s\n", last_digits_ptr);
+
+  char *phone_number_str = malloc(9 * sizeof(char));
+  strncat(phone_number_str, index_code_ptr, 3);
+  strncat(phone_number_str, hyphen_ptr, 1);
+  strncat(phone_number_str, last_digits_ptr, 4);
+  phone_number_str[8] = '\0';
+
+
+  printf("%s\n", phone_number_str);
+
 
   return phone_number_str;
 }

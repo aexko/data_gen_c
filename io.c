@@ -36,34 +36,31 @@ void free_memory() {
   free(last_names);
   free(countries);
   free(email_suffixes);
-//  for (int i = 0; i < 1000; i++) {
-//    free(first_names[i]);
-//  }
+  //  for (int i = 0; i < 1000; i++) {
+  //    free(first_names[i]);
+  //  }
 
-//  for (int i = 0; i < 1000; i++) {
-//    printf("freeing %d", i);
-//    free(last_names[i]);
-//  }
-//
-//  for (int i = 0; i < 195; i++) {
-//    printf("freeing %d", i);
-//    free(countries[i]);
-//  }
-//
-//  for (int i = 0; i < 100; i++) {
-//    printf("freeing %d", i);
-//    free(email_suffixes[i]);
-//  }
-//    free(first_names);
+  //  for (int i = 0; i < 1000; i++) {
+  //    printf("freeing %d", i);
+  //    free(last_names[i]);
+  //  }
+  //
+  //  for (int i = 0; i < 195; i++) {
+  //    printf("freeing %d", i);
+  //    free(countries[i]);
+  //  }
+  //
+  //  for (int i = 0; i < 100; i++) {
+  //    printf("freeing %d", i);
+  //    free(email_suffixes[i]);
+  //  }
+  //    free(first_names);
 
-//  free(last_names);
-//  free(countries);
-//  free(email_suffixes);
+  //  free(last_names);
+  //  free(countries);
+  //  free(email_suffixes);
   printf("Memory cleared successfully\n");
-
-
 }
-
 
 void add_csv_extension() {
   for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
@@ -82,6 +79,9 @@ void save() {
 
   FILE *file_handler = fopen(output_file_name, "w+");
   printf("Saving...\n");
+
+  fprintf(file_handler, "asdasd");
+  fprintf(file_handler, "asdasd");
 
   fclose(file_handler);
   printf("End of program\n");
@@ -117,20 +117,11 @@ void read_file(char *file_name) {
     strcpy(data[i], buffer);
   }
 
+  bind_data(file_name);
 
-  printf("size of first_names %d\n", max_lines);
-
-    bind_data(file_name);
-
-  for (int i =0; i < 1000; i++) {
-    printf("%s\n", first_names[i]);
-  }
-
-
-
-
-
-
+  //  for (int i =0; i < 1000; i++) {
+  //    printf("%s\n", first_names[i]);
+  //  }
 
   fclose(file_handler);
 }
@@ -153,14 +144,12 @@ void bind_data(char *file_name) {
     email_suffixes = data;
   }
 
-
-
   // free data pointer
-//  for (int i = 0; i < max_lines; i++) {
-//    free(data[i]);
-//  }
-//  free(data);
-//  data = NULL;
+  //  for (int i = 0; i < max_lines; i++) {
+  //    free(data[i]);
+  //  }
+  //  free(data);
+  //  data = NULL;
 }
 
 int determine_max_lines(char *file_name) {
@@ -191,19 +180,15 @@ void count_rows_file(char *file_name) {
 
   if (strcmp(file_name, "first_names.txt") == 0) {
     rows_first_names = nb_rows;
-    printf("first_names.txt: %d\n", rows_first_names);
   }
   if (strcmp(file_name, "last_names.txt") == 0) {
     rows_last_names = nb_rows;
-    printf("last_names.txt: %d\n", rows_last_names);
   }
   if (strcmp(file_name, "countries.txt") == 0) {
     rows_countries = nb_rows;
-    printf("countries.txt %d\n", rows_countries);
   }
   if (strcmp(file_name, "email_suffixes.txt") == 0) {
     rows_email_suffixes = nb_rows;
-    printf("email_suffixes.txt %d\n", rows_email_suffixes);
   }
 
   nb_rows = 0;

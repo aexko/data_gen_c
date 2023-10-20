@@ -16,6 +16,9 @@ char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
 
+  system("clear");
+
+
   initialize_program();
 
   prompt_user_input(MENU);
