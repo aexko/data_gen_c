@@ -4,10 +4,10 @@
 #include "tablegen.h"
 #include "generate.h"
 #include "io.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 char user_input_menu_choice;
 char user_input_column_list[MAX_LENGTH_INPUT];
@@ -17,7 +17,6 @@ char output_file_name[MAX_LENGTH_INPUT];
 int main() {
 
   system("clear");
-
 
   initialize_program();
 
@@ -46,7 +45,8 @@ int main() {
     break;
   }
 
-//    free_memory();
+  //    free_memory();
+  printf("End of program\n");
 
   return 0;
 }

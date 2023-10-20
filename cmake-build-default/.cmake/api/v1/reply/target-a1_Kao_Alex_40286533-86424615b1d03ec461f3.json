@@ -93,7 +93,8 @@
 			[
 				4,
 				5,
-				6
+				6,
+				7
 			]
 		}
 	],
@@ -136,6 +137,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "generate.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "sort.h",
 			"sourceGroupIndex" : 1
 		}
 	],

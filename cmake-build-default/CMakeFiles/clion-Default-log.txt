@@ -1,4 +1,4 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -G "CodeBlocks - Unix Makefiles" -S /Users/alex/Documents/comp348/a1_Kao_Alex_40286533 -B /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/cmake-build-default
--- Configuring done (0.0s)
+-- Configuring done (0.1s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/alex/Documents/comp348/a1_Kao_Alex_40286533/cmake-build-default

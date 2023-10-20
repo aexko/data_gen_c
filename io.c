@@ -24,7 +24,7 @@ char **data;
 
 extern char output_file_name[20];
 extern char **array_output;
-extern int row_count;
+extern const int row_count;
 extern int initial_id;
 extern char user_input_column_list[20];
 

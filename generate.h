@@ -13,11 +13,18 @@
 #define PASSWORD_MIN_VALUE 6
 #define BUFFER_SIZE 8192
 
-void generate_data();
+struct Person {
+  char *id;
+  char *first_name;
+  char *last_name;
+  char *country;
+  char *phone_number;
+  char *email;
+  char *sin;
+  char *password;
+};
 
-char generate_random_char();
-unsigned int generate_random_number(int min, int max);
-char *append_strings(char *first_string, char *second_string);
+void generate_data();
 
 char *generate_id();
 char *generate_first_name();
@@ -27,5 +34,14 @@ char *generate_phone_number();
 char *generate_email_address(char *first_name, char *last_name);
 char *generate_sin();
 char *generate_password();
+
+char generate_random_char();
+unsigned int generate_random_number(int min, int max);
+char *append_strings(char *first_string, char *second_string);
+int compare(const void * first_element, const void * second_element);
+
+
+
+
 
 #endif

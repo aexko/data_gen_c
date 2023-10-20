@@ -1,6 +1,7 @@
 
 #include "generate.h"
 #include "io.h"
+#include "sort.h"
 #include "tablegen.h"
 #include <ctype.h>
 #include <stdio.h>
@@ -10,26 +11,16 @@
 
 int initial_id = 1;
 extern char user_input_column_list[20];
-extern int row_count;
+extern const int row_count;
 extern char **first_names;
 extern char **last_names;
 extern char **countries;
 extern char **email_suffixes;
 extern char output_file_name[20];
 
-struct Person {
-  char *id;
-  char *first_name;
-  char *last_name;
-  char *country;
-  char *phone_number;
-  char *email;
-  char *sin;
-  char *password;
-};
-
 void generate_data() {
   struct Person list_people[row_count];
+
   int count = 0;
   add_csv_extension();
   FILE *file_handler = fopen(output_file_name, "w+");
@@ -39,6 +30,8 @@ void generate_data() {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
         printf("%c - ", user_input_column_list[i]);
+
+        // I NEED TO CREATE A HEADER FOR EACH COLUMN IF THEY ARE INITIALIZED
         switch (user_input_column_list[i]) {
         case USER_ID:
 
@@ -64,14 +57,12 @@ void generate_data() {
         case PHONE_NUMBER:
           list_people[count].phone_number = generate_phone_number();
           printf("%s\n", list_people[count].phone_number);
-
           break;
 
         case EMAIL_ADDRESS:
           list_people[count].email = generate_email_address(
               list_people[count].first_name, list_people[count].last_name);
           printf("%s\n", list_people[count].email);
-
           break;
 
         case SIN:
@@ -92,8 +83,14 @@ void generate_data() {
     count++;
   }
 
+  // what if i just sort it here and implement the function in the sort.c
+  qsort(list_people, row_count, sizeof(struct Person), compare);
+
+  for (int i = 0; i < row_count; ++i) {
+    printf("%s", list_people[i].last_name);
+  }
+  //  sort_alphabetically(list_people);
   fclose(file_handler);
-  printf("End of program\n");
 }
 
 // id
@@ -255,3 +252,5 @@ char *append_strings(char *first_string, char *second_string) {
   result[total_string_len - 1] = '\0';
   return result;
 }
+
+void create_copy() {}
