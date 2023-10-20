@@ -127,16 +127,13 @@ char *generate_country() {
 }
 
 char *generate_phone_number() {
-  printf("generating phone_number  | \n");
+  printf("generating phone_number  | ");
   unsigned int random_number = generate_random_number(0, 9);
   int list_index_codes[10] = {398, 270, 925, 867, 209, 429, 908, 997, 444, 219};
   int index_code = list_index_codes[random_number];
   char *index_code_ptr = malloc(sizeof (int) * 3);
   sprintf(index_code_ptr, "%d", index_code);
-  printf("this is char[0]: %c\n", index_code_ptr[0]);
-  printf("this is char[1]: %c\n", index_code_ptr[1]);
-  printf("this is char[2]: %c\n", index_code_ptr[2]);
-  printf("this is char %s\n", index_code_ptr);
+  printf("%s", index_code_ptr);
 
   unsigned int last_digits = generate_random_number(1000, 9999);
   char *last_digits_ptr = malloc(sizeof (int) * 4);
