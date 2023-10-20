@@ -166,11 +166,9 @@ char *generate_email_address(char *first_name, char *last_name) {
   unsigned int prefix_len = 1 + strlen(last_name) + 1;
   char prefix[prefix_len];
   prefix[prefix_len - 1] = '\0';
-convert_to_lowercase(first_name);
 
   char first_letter_str[2];
   char first_letter = first_name[0];
- convert_to_lowercase(last_name);
 
   sprintf(first_letter_str, "%c", first_letter);
 
@@ -256,11 +254,4 @@ char *append_strings(char *first_string, char *second_string) {
 
   result[total_string_len - 1] = '\0';
   return result;
-}
-
- void convert_to_lowercase(char *string) {
-  unsigned string_len = strlen(string);
-  for (int i = 0; i < string_len; i++) {
-    string[i] = tolower(string[i]);
-  }
 }
