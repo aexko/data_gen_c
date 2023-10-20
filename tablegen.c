@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 char user_input_menu_choice;
 char user_input_column_list[MAX_LENGTH_INPUT];
@@ -14,7 +15,9 @@ int row_count;
 char output_file_name[MAX_LENGTH_INPUT];
 
 int main() {
+
   initialize_program();
+
   prompt_user_input(MENU);
 
   switch (user_input_menu_choice) {
@@ -40,7 +43,7 @@ int main() {
     break;
   }
 
-    free_memory();
+//    free_memory();
 
   return 0;
 }
@@ -64,6 +67,8 @@ void prompt_user_input(int type) {
 
   case ROW_NUMBER:
     display_message(ROW_NUMBER);
+    int c;
+
     scanf("%d", &row_count);
     break;
 

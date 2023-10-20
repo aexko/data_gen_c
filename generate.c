@@ -16,8 +16,6 @@ extern char **last_names;
 extern char **countries;
 extern char **email_suffixes;
 extern char output_file_name[20];
-char **array_output;
-
 struct Person {
   char *id;
   char *first_name;
@@ -33,8 +31,6 @@ void generate_data() {
   struct Person list_people[row_count];
   int count = 0;
   add_csv_extension();
-  array_output = malloc(row_count * sizeof(char *) + 1);
-  array_output[row_count] = NULL;
   FILE *file_handler = fopen(output_file_name, "w+");
   printf("Saving...\n");
 
@@ -53,19 +49,19 @@ void generate_data() {
         case FIRST_NAME:
           list_people[i].first_name = generate_first_name();
           printf("%s\n", list_people[i].first_name);
-          fprintf(file_handler, "%s,", list_people[i].first_name);
+          fprintf(file_handler, "\r%s,", list_people[i].first_name);
           break;
 
         case LAST_NAME:
           list_people[i].last_name = generate_last_name();
           printf("%s\n", list_people[i].last_name);
-          fprintf(file_handler, "%s,", list_people[i].last_name);
+          fprintf(file_handler, "\r%s,", list_people[i].last_name);
           break;
 
         case COUNTRY:
           list_people[i].country = generate_country();
           printf("%s\n", list_people[i].country);
-          fprintf(file_handler, "%s,", list_people[i].country);
+          fprintf(file_handler, "\r%s,", list_people[i].country);
           break;
 
         case PHONE_NUMBER:
@@ -75,24 +71,25 @@ void generate_data() {
         case EMAIL_ADDRESS:
           list_people[i].country = generate_email_address(
               list_people[i].first_name, list_people[i].last_name);
-          fprintf(file_handler, "%s,", list_people[i].email);
+          fprintf(file_handler, "\r%s,", list_people[i].email);
 
           break;
 
         case SIN:
           list_people[i].sin = generate_sin();
           printf("%s\n", list_people[i].sin);
-          fprintf(file_handler, "%s,", list_people[i].sin);
+          fprintf(file_handler, "\r%s,", list_people[i].sin);
           break;
 
         case PASSWORD:
           list_people[i].password = generate_password();
           printf("%s\n", list_people[i].password);
-          fprintf(file_handler, "%s,", list_people[i].password);
+          fprintf(file_handler, "\r%s,", list_people[i].password);
           break;
         }
       }
     }
+    fprintf(file_handler, "OOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 
     printf("row %d -------------------------------------------------\n", count);
     count++;
@@ -175,7 +172,7 @@ char *generate_email_address(char *first_name, char *last_name) {
 
   // append email_suffix
 
-  return NULL;
+  return email_suffix;
 }
 
 char *generate_sin() {
@@ -191,6 +188,8 @@ char *generate_password() {
   printf("generating password      | ");
   unsigned int random_password_length =
       generate_random_number(PASSWORD_MIN_VALUE, PASSWORD_MAX_VALUE);
+  printf("%d\n", random_password_length);
+
   char *password_ptr = malloc(sizeof(char) * random_password_length + 1);
   for (int i = 0; i < random_password_length; i++) {
     password_ptr[i] = generate_random_char();
@@ -200,13 +199,21 @@ char *generate_password() {
 }
 
 char generate_random_char() {
-  char chars_authorized[] = "!\"#$'()*+-.\"/"
-                            "0123456789:<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ["
+  char chars_authorized[] = "!\"#$%'()*+-./"
+                            "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ["
                             "\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
   int chars_authorized_length =
       sizeof(chars_authorized) / sizeof(chars_authorized[0]);
+
+  for (int i = 0; i < chars_authorized_length; i++) {
+    printf("Result when a printable character %c is passed to isprint(): %d\n",
+           chars_authorized[i], isprint(chars_authorized[i]));
+    printf("________________");
+  }
+
   unsigned char random_char =
-      generate_random_number(0, chars_authorized_length - 1);
+      // -2 because the index starts at 0, and because the last index is a null
+      generate_random_number(0, chars_authorized_length - 2);
   return chars_authorized[random_char];
 }
 
