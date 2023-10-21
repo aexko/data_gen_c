@@ -1,5 +1,7 @@
-// Code convention used:
-// https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
+/**
+ * Style convention used in this project:
+ * @link https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#classnames
+ */
 
 #include "tablegen.h"
 #include "generate.h"
@@ -40,8 +42,7 @@ int main() {
     display_message(ERROR_INPUT);
     break;
   }
-
-  //    free_memory();
+  free_memory();
   printf("End of program\n");
 
   return 0;
@@ -87,6 +88,11 @@ void prompt_user_input(int type) {
   system("clear");
 }
 
+/**
+ * Check if the file exists
+ * @param file_name - name of the file
+ * @return 1 if file exists, 0 otherwise
+ */
 void initialize_program() {
   check_file("first_names.txt");
   check_file("last_names.txt");
@@ -99,12 +105,22 @@ void initialize_program() {
   read_file("email_suffixes.txt");
 }
 
+/**
+ * Display summary of the properties
+ * @param type - type of message
+ * @param column_list - list of columns
+ * @param row_count - number of rows
+ */
 void display_summary_properties() {
   printf("Columns: %s\n", user_input_column_list);
   printf("Row count: %d\n", row_count);
   printf("File name: %s\n", output_file_name);
 }
 
+/**
+ * Display message based on the type of message
+ * @param type - type of message
+ */
 void display_message(int type) {
   char MENU_MSG[] = "TableGen Menu\n"
                     "----------\n"

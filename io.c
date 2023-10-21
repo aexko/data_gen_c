@@ -23,45 +23,50 @@ char **email_suffixes;
 char **data;
 
 extern char output_file_name[20];
-extern char **array_output;
 extern const int row_count;
 extern int initial_id;
 extern char user_input_column_list[20];
 
 /**
- * This function is not working, it creates segmentation fault as an error
+ * Function that frees the memory allocated for the 2d arrays of first names,
+ * last names, countries and email suffixes as well as the data pointer used to
+ * read the files.
  */
 void free_memory() {
+
+  // free the 2d arrays of first names, last names, countries and email suffixes
+  for (int i = 0; i < 1000; i++) {
+    free(first_names[i]);
+  }
+
+  for (int i = 0; i < 1000; i++) {
+    free(last_names[i]);
+  }
+
+  for (int i = 0; i < 195; i++) {
+    free(countries[i]);
+  }
+
+  for (int i = 0; i < 100; i++) {
+    free(email_suffixes[i]);
+  }
   free(first_names);
   free(last_names);
   free(countries);
   free(email_suffixes);
-  //  for (int i = 0; i < 1000; i++) {
-  //    free(first_names[i]);
-  //  }
 
-  //  for (int i = 0; i < 1000; i++) {
-  //    printf("freeing %d", i);
-  //    free(last_names[i]);
-  //  }
-  //
-  //  for (int i = 0; i < 195; i++) {
-  //    printf("freeing %d", i);
-  //    free(countries[i]);
-  //  }
-  //
-  //  for (int i = 0; i < 100; i++) {
-  //    printf("freeing %d", i);
-  //    free(email_suffixes[i]);
-  //  }
-  //    free(first_names);
-
-  //  free(last_names);
-  //  free(countries);
-  //  free(email_suffixes);
+  // free the data pointer used to read the files
+  for (int i = 0; i < max_lines; i++) {
+    free(data[i]);
+  }
+  free(data);
   printf("Memory cleared successfully\n");
 }
 
+/**
+ * Function that adds the .csv extension to the output file name
+ * @param output_file_name - the name of the output file
+ */
 void add_csv_extension() {
   for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
     if (output_file_name[i] == '\0') {
@@ -87,6 +92,13 @@ void save() {
   printf("End of program\n");
 }
 
+/**
+ * Function that checks if the file exists and can be opened for reading and
+ * counts the number of rows in the file. If the file does not exist, the program
+ * exits with an error message.
+ * @param file_name - the name of the file to check
+ * @return - 0 if the file exists and can be opened for reading, 1 otherwise
+ */
 int check_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   if (file_handler == NULL) {
@@ -102,6 +114,11 @@ int check_file(char *file_name) {
   }
 }
 
+/**
+ * Function that reads the file and stores the data in a 2d array of strings
+ * @param data - the 2d array of strings
+ * @param file_name - the name of the file to read
+ */
 void read_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   max_lines = determine_max_lines(file_name);
@@ -116,16 +133,17 @@ void read_file(char *file_name) {
     data[i] = malloc(length * sizeof(char));
     strcpy(data[i], buffer);
   }
-
   bind_data(file_name);
-
-  //  for (int i =0; i < 1000; i++) {
-  //    printf("%s\n", first_names[i]);
-  //  }
-
   fclose(file_handler);
 }
 
+/**
+ * Function that binds the data from the 2d array of strings to the 2d arrays of
+ * first names, last names, countries and email suffixes depending on the file
+ * name
+ * @param file_name - the name of the file to bind the data from the 2d array of
+ * strings
+ */
 void bind_data(char *file_name) {
   if (strcmp(file_name, "first_names.txt") == 0) {
     first_names = malloc(max_lines * sizeof(char *));
@@ -143,15 +161,14 @@ void bind_data(char *file_name) {
     email_suffixes = malloc(max_lines * sizeof(char *));
     email_suffixes = data;
   }
-
-  // free data pointer
-  //  for (int i = 0; i < max_lines; i++) {
-  //    free(data[i]);
-  //  }
-  //  free(data);
-  //  data = NULL;
 }
 
+/**
+ * Function that determines the maximum number of lines in a file depending on
+ * the file name
+ * @param file_name - the name of the file
+ * @return - the maximum number of lines in the file
+ */
 int determine_max_lines(char *file_name) {
   if (strcmp(file_name, "first_names.txt") == 0) {
     max_lines = rows_first_names;
@@ -168,6 +185,11 @@ int determine_max_lines(char *file_name) {
   return max_lines;
 }
 
+/**
+ * Function that counts the number of rows in a file and stores the value in a
+ * global variable depending on the file name
+ * @param file_name - the name of the file
+ */
 void count_rows_file(char *file_name) {
   FILE *file_handler = fopen(file_name, "r");
   int c;
@@ -192,6 +214,5 @@ void count_rows_file(char *file_name) {
   }
 
   nb_rows = 0;
-
   fclose(file_handler);
 }
