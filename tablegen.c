@@ -4,10 +4,8 @@
 #include "tablegen.h"
 #include "generate.h"
 #include "io.h"
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 char user_input_menu_choice;
 char user_input_column_list[MAX_LENGTH_INPUT];
@@ -17,10 +15,7 @@ char output_file_name[MAX_LENGTH_INPUT];
 int main() {
 
   system("clear");
-  save();
-
   initialize_program();
-
   prompt_user_input(MENU);
 
   switch (user_input_menu_choice) {

@@ -130,7 +130,6 @@ void generate_data() {
     count++;
 
     fprintf(file_handler, "\n");
-
   }
 
   //  sort_alphabetically(list_people);
