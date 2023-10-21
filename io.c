@@ -80,8 +80,8 @@ void save() {
   FILE *file_handler = fopen(output_file_name, "w+");
   printf("Saving...\n");
 
-  fprintf(file_handler, "asdasd");
-  fprintf(file_handler, "asdasd");
+  fprintf(file_handler, "asdasd,\n");
+  fprintf(file_handler, "\rasdasd");
 
   fclose(file_handler);
   printf("End of program\n");

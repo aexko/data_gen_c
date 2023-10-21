@@ -38,10 +38,6 @@ char *generate_password();
 char generate_random_char();
 unsigned int generate_random_number(int min, int max);
 char *append_strings(char *first_string, char *second_string);
-int compare(const void * first_element, const void * second_element);
-
-
-
-
+int compare(const void *first_element, const void *second_element);
 
 #endif

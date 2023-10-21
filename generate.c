@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 int initial_id = 1;
 extern char user_input_column_list[20];
@@ -85,10 +84,55 @@ void generate_data() {
 
   // what if i just sort it here and implement the function in the sort.c
   qsort(list_people, row_count, sizeof(struct Person), compare);
+  //
+  count = 0;
+  for (int i = 0; i < row_count; i++) {
+    for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
+      if (isdigit(user_input_column_list[i])) {
+        printf("%c - ", user_input_column_list[i]);
 
-  for (int i = 0; i < row_count; ++i) {
-    printf("%s", list_people[i].last_name);
+        // I NEED TO CREATE A HEADER FOR EACH COLUMN IF THEY ARE INITIALIZED
+        switch (user_input_column_list[i]) {
+        case USER_ID:
+          fprintf(file_handler, "%s,", list_people[count].id);
+          break;
+
+        case FIRST_NAME:
+          fprintf(file_handler, "%s,", list_people[count].first_name);
+          break;
+
+        case LAST_NAME:
+          fprintf(file_handler, "%s,", list_people[count].last_name);
+          break;
+
+        case COUNTRY:
+          fprintf(file_handler, "%s,", list_people[count].country);
+          break;
+
+        case PHONE_NUMBER:
+          fprintf(file_handler, "%s,", list_people[count].phone_number);
+          break;
+
+        case EMAIL_ADDRESS:
+          fprintf(file_handler, "%s,", list_people[count].email);
+          break;
+
+        case SIN:
+          fprintf(file_handler, "%s,", list_people[count].sin);
+          break;
+
+        case PASSWORD:
+          fprintf(file_handler, "%s,", list_people[count].password);
+          break;
+        }
+      }
+    }
+    count++;
+
+    fprintf(file_handler, "\n");
+
   }
+
   //  sort_alphabetically(list_people);
   fclose(file_handler);
 }

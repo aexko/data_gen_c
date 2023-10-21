@@ -17,6 +17,7 @@ char output_file_name[MAX_LENGTH_INPUT];
 int main() {
 
   system("clear");
+  save();
 
   initialize_program();
 
@@ -70,8 +71,6 @@ void prompt_user_input(int type) {
 
   case ROW_NUMBER:
     display_message(ROW_NUMBER);
-    int c;
-
     scanf("%d", &row_count);
     break;
 
