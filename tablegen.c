@@ -47,8 +47,6 @@ int main() {
   return 0;
 }
 
-void test() {}
-
 void prompt_user_input(int type) {
   char proceed;
 

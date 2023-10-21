@@ -19,17 +19,13 @@ extern char output_file_name[20];
 
 void generate_data() {
   struct Person list_people[row_count];
-
   int count = 0;
   add_csv_extension();
   FILE *file_handler = fopen(output_file_name, "w+");
-  printf("Saving...\n");
 
   while (count != row_count) {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
-        printf("%c - ", user_input_column_list[i]);
-
         // I NEED TO CREATE A HEADER FOR EACH COLUMN IF THEY ARE INITIALIZED
         switch (user_input_column_list[i]) {
         case USER_ID:
@@ -89,8 +85,6 @@ void generate_data() {
   for (int i = 0; i < row_count; i++) {
     for (int i = 0; i < MAX_LENGTH_INPUT; i++) {
       if (isdigit(user_input_column_list[i])) {
-        printf("%c - ", user_input_column_list[i]);
-
         // I NEED TO CREATE A HEADER FOR EACH COLUMN IF THEY ARE INITIALIZED
         switch (user_input_column_list[i]) {
         case USER_ID:
@@ -172,7 +166,6 @@ char *generate_country() {
 
 char *generate_phone_number() {
   printf("generating phone_number  | ");
-
   unsigned int random_number = generate_random_number(0, 9);
   int list_index_codes[10] = {398, 270, 925, 867, 209, 429, 908, 997, 444, 219};
   int index_code = list_index_codes[random_number];
@@ -199,8 +192,6 @@ char *generate_email_address(char *first_name, char *last_name) {
   printf("generating email_address | ");
   unsigned int random_number = generate_random_number(0, 99);
   char *email_suffix_str = email_suffixes[random_number];
-  /* first_letter of first_name + full last_name + @ + email_suffix_str */
-  //  int email_len = 1 + strlen(last_name) + 1 + strlen(email_suffix_str);
 
   /* first letter of first_name + full last_name + null */
   unsigned int prefix_len = 1 + strlen(last_name) + 1;
@@ -219,29 +210,14 @@ char *generate_email_address(char *first_name, char *last_name) {
   char *email_str = append_strings(first_letter_str, last_name);
   email_str = append_strings(email_str, at_str);
   email_str = append_strings(email_str, email_suffix_str);
-  //
 
-  /* first letter of first_name + last_name + @ */
-
-  //  unsigned int email_suffix_len = 1 + strlen(email_suffix_str);
-  //  char *email_str = malloc(sizeof(char) * email_prefix_len +
-  //  email_suffix_len);
-  //
-  //  email_str[0] = first_name[0];
-  //  strncat(email_str, last_name, email_prefix_len);
-  //  email_str[email_prefix_len - 1] = '@';
-  //  strncat(email_str, email_suffix_str, email_prefix_len);
-  //  printf("%s\n", email_str);
-  // append first_name + last_name + @
-
-  // append email_suffix_str
   return email_str;
 }
 
 char *generate_sin() {
   printf("generating sin           | ");
   unsigned int sin_int = generate_random_number(100000000, 999999999);
-  // max length of id is 8 because of 1M + we need to add 1 for null char
+  /* max length of id is 8 because of 1M + we need to add 1 for null char */
   char *sin_str = malloc(8 * sizeof(int));
   sprintf(sin_str, "%d", sin_int);
   return sin_str;
@@ -295,5 +271,3 @@ char *append_strings(char *first_string, char *second_string) {
   result[total_string_len - 1] = '\0';
   return result;
 }
-
-void create_copy() {}
