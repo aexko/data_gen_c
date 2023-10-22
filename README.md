@@ -27,7 +27,8 @@ time to
 refactor.
 
 ## qsort is not working
-I thought it would work, but it is not and I did not have the time to fix it.
+I thought it would work because when I printed it in the console it worked? 
+But not in the csv file and I did not have the time to fix it. 
 
 Thank you,  
 Alex Kao (40286533)
