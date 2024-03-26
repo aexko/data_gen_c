@@ -1,5 +1,9 @@
 # Hello, correctors!
 
+## How to run the code
+1. compile: gcc -o run tablegen.c generate.c io.c sort.c  
+2. run: ./run
+
 ## Presence of print
 
 I am aware that I left a lot of printf, but it is intentional. I could have
