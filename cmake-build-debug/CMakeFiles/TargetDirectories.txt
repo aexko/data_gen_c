@@ -1,3 +1,0 @@
-C:/Users/Alex/Documents/comp348/a1_Kao_Alex_40286533/cmake-build-debug/CMakeFiles/a1_Kao_Alex_40286533.dir
-C:/Users/Alex/Documents/comp348/a1_Kao_Alex_40286533/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Alex/Documents/comp348/a1_Kao_Alex_40286533/cmake-build-debug/CMakeFiles/rebuild_cache.dir
